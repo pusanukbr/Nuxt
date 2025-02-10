@@ -6,9 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/i18n', '@nuxtjs/seo', '@pinia/nuxt','@nuxt/fonts',],
   i18n: {
-    legacy: false,
-    locale: 'uk',
-    fallbackLocale: 'en',
+    vueI18n: './i18n.config.ts',
     langDir: './lang/', // ВАЖЛИВО: переконайся, що папка `lang/` існує
     lazy: true,
     restructureDir: false,
