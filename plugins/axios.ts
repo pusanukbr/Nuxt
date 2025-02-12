@@ -1,9 +1,17 @@
-// plugins/axios.ts
-import type { AxiosInstance } from 'axios'
 import axios from 'axios'
 
-export default defineNuxtPlugin(() => {
-  const instance: AxiosInstance = axios.create({ baseURL: '/api' })
+export default defineNuxtPlugin((nuxtApp) => {
+  const axiosInstance = axios.create({
+    baseURL: process.env.API_BASE_URL || 'http://localhost:8000',
+    timeout: 10000,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 
-  return { provide: { axios: instance } }
+  return {
+    provide: {
+      axios: axiosInstance,
+    },
+  }
 })

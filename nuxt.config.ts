@@ -4,13 +4,13 @@ import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/seo', '@pinia/nuxt','@nuxt/fonts',],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/seo', '@pinia/nuxt','@nuxt/fonts', '@nuxt/icon'],
   i18n: {
     vueI18n: './i18n.config.ts',
     langDir: './lang/', // ВАЖЛИВО: переконайся, що папка `lang/` існує
     lazy: true,
     restructureDir: false,
-    strategy: 'prefix_except_default',
+    strategy: 'no_prefix',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -25,6 +25,17 @@ export default defineNuxtConfig({
     families:[
       { name: 'Montserrat', provider: 'google' },
     ]
+  },
+  icon: {
+    serverBundle: {
+      collections: ['fluent'] // <!--- this
+    },
+    customCollections: [  // Changed from object to array
+      {
+        prefix: 'my-icon',
+        dir: './assets/my-icons',
+      }
+    ],
   },
   css: ['~/assets/scss/main.scss'],
   vite: {
