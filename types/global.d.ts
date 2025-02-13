@@ -1,7 +1,5 @@
-import 'vue-i18n'
+export {}
 
-declare module 'vue' {
-  interface ComponentCustomProperties {
-    $t: (key: string, ...args: any[]) => string;
-  }
+declare global {
+  const $t: (key: string, ...args: any[]) => string
 }
