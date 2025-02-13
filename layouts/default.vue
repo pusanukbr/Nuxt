@@ -2,11 +2,7 @@
 <template>
   <div class="main">
     <header class="header">
-      <div class="logo">
-        <NuxtLink to="/" class="logo__link"
-          ><Icon name="my-icon:logo-happy" title="Logo" class="logo__icon"
-        /></NuxtLink>
-      </div>
+      <Logo />
       <nav class="menu">
         <li class="menu__item">
           <NuxtLink to="/" class="menu__link"
@@ -100,6 +96,8 @@
 </template>
 
 <script setup>
+import Logo from "../components/layout/logo.vue";
+
 const currentYear = new Date().getFullYear();
 </script>
 
@@ -113,21 +111,7 @@ const currentYear = new Date().getFullYear();
   max-width: calc((100% - 100px) / 2);
   width: 100%;
 }
-.login {
-  position: fixed;
-  top: 50px;
-  right: 50px;
-  &__button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: black;
-    transition: all 0.3s ease;
-    color: white;
-    outline: none;
-    cursor: pointer;
-  }
-}
+
 
 .header {
   position: fixed;
@@ -151,24 +135,6 @@ const currentYear = new Date().getFullYear();
 }
 .burgerMenu {
   display: none;
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-
-  &__icon {
-    font-size: 65px;
-    transition: all 0.3s ease;
-    color: rgb(184, 184, 184);
-  }
-  &:hover {
-    .logo__icon {
-      transform: scale(1.1);
-    }
-  }
 }
 
 .menu {

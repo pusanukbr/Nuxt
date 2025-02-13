@@ -2,6 +2,18 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  nitro: {
+    routeRules: {
+      "/_nuxt/**": { headers: { "cache-control": "no-store, max-age=0" } }
+    }
+  },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true
+      }
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: ['@nuxtjs/i18n', '@nuxtjs/seo', '@pinia/nuxt','@nuxt/fonts', '@nuxt/icon'],
