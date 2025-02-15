@@ -12,5 +12,5 @@ export default {
     login: 'Увійти',
     light: 'Світла',
     dark: 'Темна',
-    system: 'Системна'
+    auto: 'Авто'
   }

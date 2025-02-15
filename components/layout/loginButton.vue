@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
 
-  .login__button {
+  &__button {
     width: 100px;
     height: 30px;
 
@@ -34,5 +34,9 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
+}
+.dark .login__button {
+  background-color: #fff;
+  color: #000;
 }
 </style>

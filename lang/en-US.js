@@ -12,5 +12,5 @@ export default {
     login: 'Login',
     light: 'Light',
     dark: 'Dark',
-    system: 'System'
+    auto: 'Auto'
   }

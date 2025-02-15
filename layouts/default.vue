@@ -35,4 +35,11 @@ const currentYear = new Date().getFullYear();
 
   margin: 0 auto;
 }
+
+.dark {
+  .main {
+    background-color: #000;
+    color: white;
+  }
+}
 </style>

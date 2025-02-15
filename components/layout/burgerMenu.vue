@@ -37,6 +37,10 @@ const setTheme = (mode: "light" | "dark" | "system") => {
 <style lang="scss">
 .burger {
   //   display: none;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  
   &__theme {
     // display: none;
   }
