@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/seo', '@pinia/nuxt','@nuxt/fonts', '@nuxt/icon'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/seo','@vueuse/nuxt', '@pinia/nuxt','@nuxt/fonts', '@nuxt/icon'],
   i18n: {
     vueI18n: './i18n.config.ts',
     langDir: './lang/', // ВАЖЛИВО: переконайся, що папка `lang/` існує

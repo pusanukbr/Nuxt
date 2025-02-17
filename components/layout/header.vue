@@ -28,18 +28,27 @@
         /></NuxtLink>
       </li>
     </nav>
-    <div class="burgerToggle">
+    <div class="burgerToggle" @click="showBurger = !showBurger">
       <Icon name="fluent:list-24-regular" class="menu__item--icon" />
     </div>
 
     <!-- Burger Menu -->
-    <BurgerMenu />
+    <BurgerMenu v-if="showBurger" ref="menuRef" />
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Logo from "../components/layout/logo.vue";
 import BurgerMenu from "../components/layout/burgerMenu.vue";
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
+const showBurger = ref(false);
+const menuRef = ref<HTMLElement | null>(null);
+
+onClickOutside(menuRef, () => {
+  showBurger.value = false;
+});
 </script>
 
 <style lang="scss">
