@@ -8,6 +8,10 @@
       "node",
       "vue",
       "./types/vue-i18n"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
   }
 }

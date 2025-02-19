@@ -1,24 +1,26 @@
 <template>
   <footer class="footer">
-    <p>{{ $t("year", { year: currentYear }) }}</p>
+    <p>{{ t("year", { year: currentYear }) }}</p>
     <ul>
       <li>
-        <a href="#">{{ $t("terms") }}</a>
+        <a href="#">{{ t("terms") }}</a>
       </li>
       <li>
-        <a href="#">{{ $t("privacy") }}</a>
+        <a href="#">{{ t("privacy") }}</a>
       </li>
       <li>
-        <a href="#">{{ $t("cookie") }}</a>
+        <a href="#">{{ t("cookie") }}</a>
       </li>
       <li>
-        <a>{{ $t("report") }}</a>
+        <a>{{ t("report") }}</a>
       </li>
     </ul>
   </footer>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 const currentYear = new Date().getFullYear();
 </script>
 
