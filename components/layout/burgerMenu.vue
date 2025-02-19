@@ -60,9 +60,9 @@ const setTheme = (mode: "light" | "dark" | "system") => {
     display: flex;
     flex-direction: column;
 
-    background-color: var(--primary-bg);
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--secondary-bg);
+    box-shadow: 0 0 15px 1px var(--box-shadow);
+    border: 1px solid var(--border);
     border-radius: 15px;
 
     color: var(--primary-text);
@@ -83,12 +83,12 @@ const setTheme = (mode: "light" | "dark" | "system") => {
 
         a {
             text-decoration: none;
-            color: #000;
+            color: var(--primary-text);
         }
 
         &:first-child {
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border);
         }
     }
 
@@ -103,7 +103,7 @@ const setTheme = (mode: "light" | "dark" | "system") => {
         cursor: pointer;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.04);
+            background-color: var(--hover-grey);
         }
 
         &--red a {

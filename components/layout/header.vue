@@ -114,8 +114,8 @@ onClickOutside(
     padding: 10px;
     padding-bottom: 20px;
 
-    background-color: white;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.05);
+    background-color: var(--primary-bg);
+    box-shadow: 0 0 10px 1px var(--box-shadow);
 
     .menu {
         display: flex;
@@ -127,14 +127,13 @@ onClickOutside(
 
             &--icon {
                 font-size: 25px;
-                color: rgb(184, 184, 184);
+                color: var(--navigation-icon);
             }
         }
 
         &__link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flex-row-center;
+
             margin: 10px 0;
             list-style: none;
             padding: 0;
@@ -143,18 +142,17 @@ onClickOutside(
             transition: all 0.3s ease;
 
             &:hover {
-                background-color: rgba(0, 0, 0, 0.04);
+                background-color: var(--hover-grey);
             }
         }
 
         &__button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flex-row-center;
+
             padding: 15px 20px;
             border-radius: 15px;
             border: none;
-            background-color: rgba(0, 0, 0, 0.04);
+            background-color: var(--hover-grey);
             transition: all 0.3s ease;
             outline: none;
 
@@ -162,7 +160,7 @@ onClickOutside(
                 cursor: pointer;
 
                 .menu__item--icon {
-                    color: black;
+                    color: var(--primary-icon);
                 }
             }
         }

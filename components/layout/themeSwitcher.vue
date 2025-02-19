@@ -131,8 +131,8 @@ function applyTheme(theme: "light" | "dark" | "system") {
         position: relative;
         display: flex;
 
-        background-color: #fff;
-        box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.05);
+        background-color: var(--primary-bg);
+        box-shadow: inset 0 0 5px 1px var(--box-shadow);
         border-radius: 15px;
     }
 
@@ -147,7 +147,7 @@ function applyTheme(theme: "light" | "dark" | "system") {
 
         border-radius: 10px;
 
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: var(--tertiary-bg);
 
         transition: left 0.3s cubic-bezier(0.38, 0.3, 0, 0.31);
 
