@@ -1,11 +1,11 @@
 <template>
     <h1>LOGIN</h1>
-  </template>
-  
-  <script setup>
-  
-  </script>
-  
-  <style lang="scss">
-  
-  </style>
+</template>
+
+<script setup>
+definePageMeta({
+    layout: "empty",
+});
+</script>
+
+<style lang="scss"></style>
