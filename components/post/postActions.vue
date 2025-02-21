@@ -1,17 +1,17 @@
 <template>
     <div class="post-actions">
-        <button class="post-actions__item">
+        <button class="post-actions__item" @click.stop>
             <Icon
                 name="fluent:heart-24-regular"
                 class="post-actions__icon post-actions__icon--heart"
             />
             <span>{{ likes }}</span>
         </button>
-        <button class="post-actions__item">
+        <button class="post-actions__item" @click.stop>
             <Icon name="fluent:comment-24-regular" class="post-actions__icon" />
             <span>{{ commentsCount }}</span>
         </button>
-        <button class="post-actions__item">
+        <button class="post-actions__item" @click.stop>
             <span>
                 <Icon
                     name="fluent:arrow-repeat-all-24-regular"

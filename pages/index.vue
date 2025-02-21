@@ -5,7 +5,9 @@
             <div class="feed-page__title-bottom"></div>
         </div>
         <div class="feed-page__posts">
+            <SkeletonPost v-if="pending" v-for="n in 12" :key="n" />
             <PostCard
+                v-else
                 v-for="post in posts"
                 :key="post.id"
                 :post="post"
@@ -18,7 +20,10 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 
-const { data: posts } = await useFetch("/api/posts");
+const { data: posts, pending } = useAsyncData("posts", async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Імітація затримки
+    return await $fetch("/api/posts");
+});
 
 const { t } = useI18n();
 </script>

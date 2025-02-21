@@ -1,5 +1,5 @@
 <template>
-    <div class="post-card">
+    <div class="post-card" @click="routerToPost">
         <div class="post-card__col">
             <UserAvatar :src="user.avatar" />
         </div>
@@ -17,8 +17,12 @@
 </template>
 
 <script setup>
-defineProps(["post", "user"]);
+const props = defineProps(["post", "user"]);
+const router = useRouter();
 
+const routerToPost = () => {
+    router.push(`/post/${props.post.id}`);
+};
 const handleAddComment = (text) => {
     console.log("Новий коментар:", text);
 };
@@ -30,6 +34,8 @@ const handleAddComment = (text) => {
     gap: 1rem;
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+
+    cursor: pointer;
 
     &:last-child {
         border-bottom: none;

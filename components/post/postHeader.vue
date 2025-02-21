@@ -1,10 +1,17 @@
 <template>
     <div class="post-header">
         <div class="post-header__info">
-            <span class="post-header__info--name">{{ user.username }}</span>
-            <span class="post-header__info--date">{{
-                formatDate(createdAt)
-            }}</span>
+            <NuxtLink
+                :to="`/user/${user.id}`"
+                class="post-header__info--name"
+                @click.stop
+            >
+                {{ user.username }}
+            </NuxtLink>
+
+            <span class="post-header__info--date">
+                {{ formatDate(createdAt) }}
+            </span>
         </div>
         <!-- <div class="post-header__dots"></div> -->
     </div>
