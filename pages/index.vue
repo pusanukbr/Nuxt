@@ -1,6 +1,9 @@
 <template>
     <div class="feed-page">
-        <h1 class="feed-page__title">{{ t("feed") }}</h1>
+        <div class="feed-page__title">
+            <h1>{{ t("feed") }}</h1>
+            <div class="feed-page__title-bottom"></div>
+        </div>
         <div class="feed-page__posts">
             <PostCard
                 v-for="post in posts"
@@ -39,6 +42,8 @@ const { t } = useI18n();
 
         background-color: var(--primary-bg);
 
+        /* border-bottom: 1px solid var(--border); */
+
         text-align: center;
 
         z-index: 100;
@@ -47,25 +52,45 @@ const { t } = useI18n();
             content: "";
             position: absolute;
             bottom: -20px;
-            left: -1px;
+            left: 0;
+
             width: 20px;
             height: 20px;
+
             background: transparent;
-            z-index: 10;
+
+            border-top: 1px solid var(--border);
             border-top-left-radius: 20px;
             box-shadow: -6px -6px var(--primary-bg);
+
+            z-index: 10;
         }
         &::after {
             content: "";
             position: absolute;
             bottom: -20px;
-            right: -1px;
+            right: 0;
+
             width: 20px;
             height: 20px;
+
             background: transparent;
-            z-index: 10;
+
+            border-top: 1px solid var(--border);
             border-top-right-radius: 20px;
             box-shadow: 6px -6px var(--primary-bg);
+
+            z-index: 10;
+        }
+        &-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+
+            width: calc(100% - 40px);
+            height: 1px;
+
+            background-color: var(--border);
         }
     }
     &__posts {
@@ -78,10 +103,11 @@ const { t } = useI18n();
 
         padding: 20px;
 
-        /* border: 1px solid red; */
+        border: 1px solid var(--border);
+        border-top: 0;
         border-radius: 20px;
 
-        background-color: var(--primary-bg);
+        background-color: var(--secondary-bg);
     }
 }
 </style>
