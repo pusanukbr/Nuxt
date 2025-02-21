@@ -1,5 +1,6 @@
 :root {
     --primary-text: rgb(0, 0, 0);
+    --secondary-text: rgb(153, 153, 153);
 
     --primary-bg: rgb(250, 250, 250);
     --secondary-bg: rgb(255, 255, 255);
@@ -9,16 +10,21 @@
     --secondary-icon: rgb(153, 153, 153);
     --navigation-icon: rgb(184, 184, 184);
 
+    --post-icon: rgb(66, 66, 66);
+
     --hover-grey: rgba(0, 0, 0, 0.04);
 
     --box-shadow: rgba(0, 0, 0, 0.05);
 
     --border: rgba(0, 0, 0, 0.1);
     --primary-text: rgb(0, 0, 0);
+
+    --danger: rgb(220, 53, 69);
 }
 
 .dark {
     --primary-text: rgb(255, 255, 255);
+    --secondary-text: rgb(179, 179, 179);
 
     --primary-bg: rgb(10, 10, 10);
     --secondary-bg: rgb(20, 20, 20);
@@ -28,6 +34,8 @@
     --secondary-icon: rgb(119, 119, 119);
     --navigation-icon: rgb(77, 77, 77);
 
+    --post-icon: rgb(243, 245, 247);
+
     --hover-grey: rgba(255, 255, 255, 0.05);
 
     --primary-text: rgb(255, 255, 255);
@@ -35,20 +43,6 @@
     --box-shadow: rgba(0, 0, 0, 0.2);
 
     --border: rgba(255, 255, 255, 0.1);
+
+    --danger: rgb(220, 53, 69);
 }
-/*
-$primary: red;
-$text: #000;
-
-$light: rgb(255, 255, 255);
-$light-medium: rgb(250, 250, 250);
-$primary-icon: rgb(0, 0, 0);
-$secondary-icon: rgb(153, 153, 153);
-$navigation-icon: rgb(184, 184, 184);
-
-$font: "Montserrat", sans-serif;
-$font-size: 16px;
-$font-weight: 400;
-$font-weight-bold: 700;
-$font-weight-light: 300;
-$font-weight-lighter: 100; */

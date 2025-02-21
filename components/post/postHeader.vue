@@ -1,10 +1,12 @@
 <template>
     <div class="post-header">
-        <UserAvatar :src="user.avatar" />
-        <div>
-            <strong>{{ user.name }}</strong>
-            <span>@{{ user.username }} · {{ formatDate(createdAt) }}</span>
+        <div class="post-header__info">
+            <span class="post-header__info--name">{{ user.username }}</span>
+            <span class="post-header__info--date">{{
+                formatDate(createdAt)
+            }}</span>
         </div>
+        <!-- <div class="post-header__dots"></div> -->
     </div>
 </template>
 
@@ -22,3 +24,28 @@ const formatDate = (dateString) => {
     }).format(date);
 };
 </script>
+
+<style lang="scss">
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+
+    &__info {
+        display: flex;
+
+        &--name {
+            margin-right: 0.5rem;
+
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        &--date {
+            color: var(--secondary-text);
+        }
+    }
+}
+</style>

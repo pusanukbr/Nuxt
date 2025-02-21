@@ -101,8 +101,6 @@ const { t } = useI18n();
 
         width: 100%;
 
-        padding: 20px;
-
         border: 1px solid var(--border);
         border-top: 0;
         border-radius: 20px;

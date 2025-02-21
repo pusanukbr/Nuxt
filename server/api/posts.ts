@@ -106,5 +106,109 @@ export default defineEventHandler(() => {
         },
       ],
     },
+    {
+      id: 6,
+      user: {
+        id: 5,
+        username: "john",
+        avatar: "https://xsgames.co/randomusers/assets/avatars/male/3.jpg",
+        name: "John",
+      },
+      content: "Працюю над новим проєктом 🚀",
+      likes: 15,
+      createdAt: "2025-02-16T14:20:00Z",
+      comments: [
+        {
+          id: 3,
+          user: {
+            id: 1,
+            username: "bogdan",
+            avatar: "https://xsgames.co/randomusers/assets/avatars/male/1.jpg",
+            name: "Bogdan",
+          },
+          text: "Цікаво, розкажеш більше?",
+          createdAt: "2025-02-16T15:00:00Z",
+          replies: [],
+        },
+      ],
+    },
+    {
+      id: 7,
+      user: {
+        id: 5,
+        username: "john",
+        avatar: "https://xsgames.co/randomusers/assets/avatars/male/3.jpg",
+        name: "John",
+      },
+      content: "Працюю над новим проєктом 🚀",
+      likes: 15,
+      createdAt: "2025-02-16T14:20:00Z",
+      comments: [
+        {
+          id: 3,
+          user: {
+            id: 1,
+            username: "bogdan",
+            avatar: "https://xsgames.co/randomusers/assets/avatars/male/1.jpg",
+            name: "Bogdan",
+          },
+          text: "Цікаво, розкажеш більше?",
+          createdAt: "2025-02-16T15:00:00Z",
+          replies: [],
+        },
+      ],
+    },
+    {
+      id: 8,
+      user: {
+        id: 5,
+        username: "john",
+        avatar: "https://xsgames.co/randomusers/assets/avatars/male/3.jpg",
+        name: "John",
+      },
+      content: "Працюю над новим проєктом 🚀",
+      likes: 15,
+      createdAt: "2025-02-16T14:20:00Z",
+      comments: [
+        {
+          id: 3,
+          user: {
+            id: 1,
+            username: "bogdan",
+            avatar: "https://xsgames.co/randomusers/assets/avatars/male/1.jpg",
+            name: "Bogdan",
+          },
+          text: "Цікаво, розкажеш більше?",
+          createdAt: "2025-02-16T15:00:00Z",
+          replies: [],
+        },
+      ],
+    },
+    {
+      id: 9,
+      user: {
+        id: 5,
+        username: "john",
+        avatar: "https://xsgames.co/randomusers/assets/avatars/male/3.jpg",
+        name: "John",
+      },
+      content: "Працюю над новим проєктом 🚀",
+      likes: 15,
+      createdAt: "2025-02-16T14:20:00Z",
+      comments: [
+        {
+          id: 3,
+          user: {
+            id: 1,
+            username: "bogdan",
+            avatar: "https://xsgames.co/randomusers/assets/avatars/male/1.jpg",
+            name: "Bogdan",
+          },
+          text: "Цікаво, розкажеш більше?",
+          createdAt: "2025-02-16T15:00:00Z",
+          replies: [],
+        },
+      ],
+    },
   ];
 });
