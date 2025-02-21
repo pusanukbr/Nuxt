@@ -30,13 +30,13 @@ import Header from "../components/layout/header.vue";
     min-height: 100vh;
 
     &__page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-grow: 1;
-        max-width: calc((100% - 100px) / 2);
         width: 100%;
 
-        margin: 0 auto;
-
-        text-align: center;
+        padding-left: 100px;
     }
 }
 .dark {
