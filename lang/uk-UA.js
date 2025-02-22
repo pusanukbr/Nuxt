@@ -32,4 +32,7 @@ export default {
   register: "Зареєструватися",
   noAccount: "Немає акаунта?",
   haveAccount: "Вже є акаунт?",
+  resetPassword: "Скинути пароль",
+  resetPasswordDescription:
+    "Введіть адресу електронної пошти, щоб скинути пароль",
 };

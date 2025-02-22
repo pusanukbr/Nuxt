@@ -16,9 +16,6 @@
                     <Icon name="fluent:person-24-regular" />
                 </template>
             </UiBaseInput>
-            <div class="registration-form__icon">
-                <Icon name="icon-username" icon-class="icon" />
-            </div>
         </div>
 
         <div class="registration-form__field">

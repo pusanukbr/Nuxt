@@ -32,4 +32,6 @@ export default {
   register: "Register",
   noAccount: "No account?",
   haveAccount: "Already have an account?",
+  resetPassword: "Reset Password",
+  resetPasswordDescription: "Enter your email address to reset your password",
 };
