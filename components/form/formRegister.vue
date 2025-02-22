@@ -10,12 +10,10 @@
                 :error-message="errors.username"
                 :show-errors="showErrors"
                 @input="inputHandler"
+                class="registration-form__input"
             >
                 <template #icon>
-                    <Icon
-                        name="fluent:person-24-regular"
-                        class="registration-form__icon"
-                    />
+                    <Icon name="fluent:person-24-regular" />
                 </template>
             </UiBaseInput>
             <div class="registration-form__icon">
@@ -34,12 +32,10 @@
                 placeholder="name@mail.com"
                 @input="inputHandler"
                 type="email"
+                class="registration-form__input"
             >
                 <template #icon>
-                    <Icon
-                        name="fluent:mail-24-regular"
-                        class="login-form__icon"
-                    />
+                    <Icon name="fluent:mail-24-regular" />
                 </template>
             </UiBaseInput>
         </div>
@@ -53,6 +49,7 @@
                 type="password"
                 placeholder="******"
                 @input="inputHandler"
+                class="registration-form__input"
             />
         </div>
 
@@ -65,6 +62,7 @@
                 type="password"
                 placeholder="******"
                 @input="inputHandler"
+                class="registration-form__input"
             />
         </div>
 
@@ -193,52 +191,93 @@ const handleSubmit = async () => {
 </script>
 
 <style lang="scss">
-.registration-form__field {
-    position: relative;
-    margin-bottom: 20px;
-}
-.registration-form__label {
-    position: absolute;
-    top: -10px;
-    left: 15px;
-    background: white;
-    padding: 0 5px;
-    font-weight: bold;
+.registration-form {
+    width: 100%;
+    margin: 0 auto;
+
+    &__field {
+        position: relative;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+
+        margin-bottom: 15px;
+    }
+
+    &__label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+
+        padding: 0 5px;
+
+        background: var(--primary-bg);
+
+        font-size: 13px;
+        color: var(--primary-text);
+    }
+
+    &__input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+    }
+
+    &__progress {
+        margin-bottom: 20px;
+
+        &-bar {
+            width: 100%;
+            height: 5px;
+
+            margin-bottom: 10px;
+
+            background: #ccc;
+            border-radius: 3px;
+
+            overflow: hidden;
+        }
+
+        &-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+    }
+
+    &__rule {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        margin-bottom: 5px;
+
+        font-size: 14px;
+
+        &--valid {
+            color: green;
+        }
+
+        &-icon {
+            &--invalid {
+                color: red;
+            }
+
+            &--valid {
+                color: green;
+            }
+        }
+    }
 }
 
-.registration-form__progress {
-    margin-bottom: 20px;
-}
-.registration-form__progress-bar {
-    width: 100%;
-    height: 5px;
-    background: #ccc;
-    border-radius: 3px;
-    overflow: hidden;
-}
-.registration-form__progress-fill {
-    height: 100%;
-    transition: width 0.3s ease;
-}
-.registration-form__rules {
-    font-size: 14px;
-}
-.registration-form__rule {
-    display: flex;
-    align-items: center;
-}
-.registration-form__rule--valid {
-    color: green;
-}
-.registration-form__rule-icon--invalid {
-    color: red;
-}
-.registration-form__rule-icon--valid {
-    color: green;
-}
-.modal__title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.modal {
+    &__title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 }
 </style>

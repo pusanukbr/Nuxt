@@ -136,11 +136,13 @@ function handleSubmit() {
     position: absolute;
     top: -10px;
     left: 15px;
-    background: var(--primary-bg);
+
     padding: 0 5px;
+
+    background: var(--primary-bg);
+
     font-size: 13px;
-    font-weight: bold;
-    color: #333;
+    color: var(--primary-text);
 }
 
 .login-form__input {

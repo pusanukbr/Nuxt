@@ -18,3 +18,21 @@ definePageMeta({
     layout: "empty",
 });
 </script>
+
+<style scoped lang="scss">
+.register-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 400px;
+    width: 100%;
+    height: 100vh;
+
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+</style>
