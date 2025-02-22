@@ -1,7 +1,7 @@
 <template>
     <div class="login-page">
         <h1 class="login-page__title">{{ t("login") }}</h1>
-        <LoginForm />
+        <FormLogin />
         <div class="login-page__link">
             {{ t("noAccount") }}
             <NuxtLink to="/register">{{ t("register") }}</NuxtLink>

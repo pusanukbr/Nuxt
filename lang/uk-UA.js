@@ -25,4 +25,5 @@ export default {
   forgotPassword: "Забули пароль?",
   register: "Зареєструватися",
   noAccount: "Немає акаунта?",
+  haveAccount: "Вже є акаунт?",
 };

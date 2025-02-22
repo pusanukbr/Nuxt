@@ -4,15 +4,22 @@
             <label for="username" class="registration-form__label">{{
                 t("username")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.username"
                 :placeholder="t('username')"
                 :error-message="errors.username"
                 :show-errors="showErrors"
                 @input="inputHandler"
-            />
+            >
+                <template #icon>
+                    <Icon
+                        name="fluent:person-24-regular"
+                        class="registration-form__icon"
+                    />
+                </template>
+            </UiBaseInput>
             <div class="registration-form__icon">
-                <Icon icon-name="icon-username" icon-class="icon" />
+                <Icon name="icon-username" icon-class="icon" />
             </div>
         </div>
 
@@ -20,24 +27,28 @@
             <label for="email" class="registration-form__label">{{
                 t("email")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.email"
                 :error-message="errors.email"
                 :show-errors="showErrors"
                 placeholder="name@mail.com"
                 @input="inputHandler"
                 type="email"
-            />
-            <div class="registration-form__icon">
-                <Icon icon-name="icon-mail" icon-class="icon" />
-            </div>
+            >
+                <template #icon>
+                    <Icon
+                        name="fluent:mail-24-regular"
+                        class="login-form__icon"
+                    />
+                </template>
+            </UiBaseInput>
         </div>
 
         <div class="registration-form__field">
             <label for="password" class="registration-form__label">{{
                 t("password")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.password"
                 type="password"
                 placeholder="******"
@@ -49,7 +60,7 @@
             <label for="confirmPassword" class="registration-form__label">{{
                 t("confirmPassword")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.confirm"
                 type="password"
                 placeholder="******"
@@ -76,12 +87,12 @@
                 >
                     <Icon
                         v-if="!rule.valid"
-                        icon-name="icon-exclamation"
+                        name="fluent:warning-24-regular"
                         class="registration-form__rule-icon--invalid"
                     />
                     <Icon
                         v-if="rule.valid"
-                        icon-name="icon-check"
+                        name="fluent:checkmark-24-regular"
                         class="registration-form__rule-icon--valid"
                     />
                     <span class="registration-form__rule-text">{{
@@ -91,33 +102,29 @@
             </div>
         </div>
 
-        <BaseButton type="submit" class="registration-form__button">{{
-            t("register")
-        }}</BaseButton>
+        <button type="submit" class="registration-form__button">
+            {{ t("register") }}
+        </button>
     </form>
 
-    <Modal v-model="showModal" id="registerModal">
+    <UiModal v-model="showModal" id="registerModal">
         <h2 class="modal__title">{{ t(modalValue) }}</h2>
         <p v-if="modalValue === 'emailExist'">{{ t("checkEmail") }}</p>
         <p v-else>Link</p>
-    </Modal>
+    </UiModal>
 </template>
 
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import BaseInput from "@/UI/BaseInput.vue";
-import BaseButton from "@/UI/BaseButton.vue";
-import Icon from "@/utils/Icon.vue";
-import Modal from "@/UI/Modal.vue";
-import { useUserStore } from "@/stores/authStore";
+import { useUserStore } from "../../store/authStore";
 import {
     confirmPassword,
     isEmail,
     minLength,
     required,
-} from "@/utils/validationRules";
-import { validateInput } from "@/utils/validation";
+} from "../../utils/validationRules";
+import { validateInput } from "../../utils/validation";
 
 const { t } = useI18n();
 
@@ -167,10 +174,10 @@ const progressColor = computed(() => {
 
 const inputHandler = () => {
     errors.value.username = validateInput(form.username, [
-        required,
-        minLength(3),
+        required(t),
+        minLength(3, t),
     ]);
-    errors.value.email = validateInput(form.email, [required, isEmail]);
+    errors.value.email = validateInput(form.email, [required(t), isEmail(t)]);
 };
 
 const handleSubmit = async () => {
@@ -182,15 +189,10 @@ const handleSubmit = async () => {
         showErrors.value = true;
         return;
     }
-    // Submit logic here
 };
 </script>
 
-<style>
-.registration-form {
-    max-width: 400px;
-    margin: auto;
-}
+<style lang="scss">
 .registration-form__field {
     position: relative;
     margin-bottom: 20px;
@@ -203,12 +205,7 @@ const handleSubmit = async () => {
     padding: 0 5px;
     font-weight: bold;
 }
-.registration-form__icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
+
 .registration-form__progress {
     margin-bottom: 20px;
 }

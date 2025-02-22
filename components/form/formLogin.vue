@@ -4,7 +4,7 @@
             <label for="email" class="login-form__label">{{
                 t("email")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.email"
                 type="email"
                 placeholder="name@mail.com"
@@ -19,14 +19,14 @@
                         class="login-form__icon"
                     />
                 </template>
-            </BaseInput>
+            </UiBaseInput>
         </div>
 
         <div class="login-form__group">
             <label for="password" class="login-form__label">{{
                 t("password")
             }}</label>
-            <BaseInput
+            <UiBaseInput
                 v-model="form.password"
                 type="password"
                 placeholder="******"
@@ -62,7 +62,6 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import BaseInput from "../ui/baseInput.vue";
 import { isEmail, minLength, required } from "../../utils/validationRules";
 import { validateInput } from "../../utils/validation";
 
