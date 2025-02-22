@@ -6,6 +6,9 @@
     --secondary-bg: rgb(255, 255, 255);
     --tertiary-bg: rgb(240, 240, 240);
 
+    --button-bg: rgb(0, 0, 0);
+    --button-text: rgb(255, 255, 255);
+
     --primary-icon: rgb(0, 0, 0);
     --secondary-icon: rgb(153, 153, 153);
     --navigation-icon: rgb(184, 184, 184);
@@ -17,6 +20,7 @@
     --box-shadow: rgba(0, 0, 0, 0.05);
 
     --border: rgba(0, 0, 0, 0.1);
+    --border-focus: rgba(0, 0, 0, 0.2);
     --primary-text: rgb(0, 0, 0);
 
     --danger: rgb(220, 53, 69);
@@ -33,6 +37,9 @@
     --secondary-bg: rgb(20, 20, 20);
     --tertiary-bg: rgb(30, 30, 30);
 
+    --button-bg: rgb(255, 255, 255);
+    --button-text: rgb(0, 0, 0);
+
     --primary-icon: rgb(243, 245, 247);
     --secondary-icon: rgb(119, 119, 119);
     --navigation-icon: rgb(77, 77, 77);
@@ -46,6 +53,7 @@
     --box-shadow: rgba(0, 0, 0, 0.2);
 
     --border: rgba(255, 255, 255, 0.1);
+    --border-focus: rgba(255, 255, 255, 0.2);
 
     --danger: rgb(220, 53, 69);
 

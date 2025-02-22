@@ -2,7 +2,6 @@
     <div class="empty__page">
         <slot />
     </div>
-    <slot />
 </template>
 
 <style lang="scss">
@@ -15,5 +14,11 @@
 
     width: 100%;
     min-height: 100vh;
+
+    background-color: var(--primary-bg);
+    background: url(../assets/img/bg_auth.svg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
 }
 </style>
