@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+definePageMeta({
+    title: "Feed",
+    description: "Feed page",
+});
+
+const { data: posts, pending } = useAsyncData("posts", async () => {
+    // await new Promise((resolve) => setTimeout(resolve, 2000)); // Імітація затримки
+    return await $fetch("/api/posts");
+});
+</script>
+
 <template>
     <div class="feed-page">
         <div class="feed-page__title">
@@ -16,17 +32,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { useI18n } from "vue-i18n";
-
-const { data: posts, pending } = useAsyncData("posts", async () => {
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Імітація затримки
-    return await $fetch("/api/posts");
-});
-
-const { t } = useI18n();
-</script>
 
 <style lang="scss">
 .feed-page {

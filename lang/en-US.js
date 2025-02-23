@@ -34,4 +34,6 @@ export default {
   haveAccount: "Already have an account?",
   resetPassword: "Reset Password",
   resetPasswordDescription: "Enter your email address to reset your password",
+    registerDescription: "Registration Page",
+    feedDescription: "News Feed",
 };
