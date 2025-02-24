@@ -35,5 +35,8 @@ export default {
   resetPassword: "Reset Password",
   resetPasswordDescription: "Enter your email address to reset your password",
     registerDescription: "Registration Page",
+    feed: "News Feed",
     feedDescription: "News Feed",
+    postTitle: "Post",
+    backLink: "Back",
 };

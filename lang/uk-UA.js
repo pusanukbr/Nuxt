@@ -36,5 +36,8 @@ export default {
   resetPasswordDescription:
     "Введіть адресу електронної пошти, щоб скинути пароль",
   registerDescription: "Сторінка регістрації",
+  feed: "Стрічка новин",
   feedDescription: "Стрічка новин",
+  postTitle: "Ланцюжок",
+  backLink: "Повернутися",
 };
