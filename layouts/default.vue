@@ -39,10 +39,4 @@ import Header from "../components/layout/header.vue";
         padding-left: 100px;
     }
 }
-.dark {
-    .main {
-        background-color: #000;
-        color: white;
-    }
-}
 </style>

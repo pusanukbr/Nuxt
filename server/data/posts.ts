@@ -1,5 +1,4 @@
-export default defineEventHandler(() => {
-  return [
+export default [
     {
       id: 1,
       user: {
@@ -211,4 +210,3 @@ export default defineEventHandler(() => {
       ],
     },
   ];
-});

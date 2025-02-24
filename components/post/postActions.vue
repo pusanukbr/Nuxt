@@ -1,9 +1,9 @@
 <template>
     <div class="post-actions">
-        <div class="post-actions__item" @click.stop>
+        <div class="post-actions__item post-actions__item--like" @click.stop="likePost">
             <Icon
-                name="fluent:heart-24-regular"
-                class="post-actions__icon post-actions__icon--heart"
+                :name="`fluent:thumb-like-24-${iconLike}`"
+                class="post-actions__icon"
             />
             <span>{{ likes }}</span>
         </div>
@@ -25,6 +25,13 @@
 
 <script setup>
 defineProps(["likes", "commentsCount"]);
+
+const iconLike = ref("regular");
+
+const likePost = () => {
+    console.log("Like post");
+    iconLike.value = "filled";
+};
 </script>
 
 <style lang="scss">
@@ -52,16 +59,18 @@ defineProps(["likes", "commentsCount"]);
         transition: all 0.3s ease-in-out;
 
         &:hover {
-            background-color: var(--primary-bg);
+            background-color: var(--hover-grey);
+        }
+
+        &--like {
+            span {
+                width: 18px;
+            }
         }
     }
 
     &__icon {
         font-size: 18px;
-
-        /* &--heart {
-            color: var(--danger);
-        } */
     }
 }
 </style>

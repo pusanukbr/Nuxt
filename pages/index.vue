@@ -43,6 +43,8 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
 
     width: 640px;
 
+    padding-bottom: 20px;
+
     &__title {
         position: sticky;
         top: 0;
@@ -50,9 +52,9 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
 
         width: 100%;
 
-        background-color: var(--primary-bg);
+        padding: 10px 0;
 
-        /* border-bottom: 1px solid var(--border); */
+        background-color: var(--primary-bg);
 
         text-align: center;
 
