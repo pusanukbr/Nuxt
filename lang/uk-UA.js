@@ -40,4 +40,5 @@ export default {
   feedDescription: "Стрічка новин",
   postTitle: "Ланцюжок",
   backLink: "Повернутися",
+  views: "{col} переглядів",
 };

@@ -2,8 +2,8 @@
     <div>
         <NuxtLink to="/">
             <svg
-                width="595"
-                height="547"
+                width="80"
+                height="80"
                 viewBox="0 0 595 547"
                 fill="none"
                 class="logo__icon"

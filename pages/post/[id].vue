@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HeaderPage from "../../components/headerPage.vue";
+
 definePageMeta({
     title: "Post",
     description: "Post page",
@@ -10,12 +12,10 @@ import {useRoute} from 'vue-router';
 
 const router = useRoute();
 const postId = router.params.id;
-const previousPage: String = useState('previousPath');
+const previousPage: string = useState('previousPath');
 
 const {t} = useI18n();
 
-const title = useState("layoutTitle");
-title.value = t("postTitle");
 
 const {data: post, pending} = useAsyncData(`post-${postId}`, async () => {
     return await $fetch(`/api/posts/${postId}`);
@@ -23,9 +23,10 @@ const {data: post, pending} = useAsyncData(`post-${postId}`, async () => {
 </script>
 
 <template>
-    <SkeletonPost v-if="pending"/>
-    <PostCard v-else :post="post" :user="post.user"/>
-
+    <HeaderPage title="postTitle" :back-link="previousPage">
+        <SkeletonPost v-if="pending"/>
+        <PostCard v-else :post="post" :user="post.user"/>
+    </HeaderPage>
 </template>
 
 <style lang="scss"></style>

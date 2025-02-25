@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import HeaderPage from "../components/headerPage.vue";
 const { t } = useI18n();
 
 definePageMeta({
@@ -14,13 +15,7 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
 </script>
 
 <template>
-    <div class="content">
-        <div class="content__title">
-            <div class="content__back"></div>
-            <h1>{{ t("feed") }}</h1>
-            <div class="content__title-bottom" />
-        </div>
-        <div class="content__posts">
+        <HeaderPage title="feed">
             <SkeletonPost v-if="pending" v-for="n in 12" :key="n" />
             <PostCard
                 v-else
@@ -29,8 +24,7 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
                 :post="post"
                 :user="post.user"
             />
-        </div>
-    </div>
+        </HeaderPage>
 </template>
 
 <style lang="scss"></style>

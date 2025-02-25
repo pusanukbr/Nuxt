@@ -10,8 +10,6 @@
                 :likes="post.likes"
                 :commentsCount="post.comments.length"
             />
-            <!-- <PostComments :comments="post.comments" />
-            <PostAddComment @add-comment="handleAddComment" /> -->
         </div>
     </div>
 </template>
