@@ -20,8 +20,8 @@
 const props = defineProps(["post", "user"]);
 const router = useRouter();
 
-const routerToPost = () => {
-    console.log(router)
+const routerToPost = (e) => {
+    e.preventDefault();
     router.push(`/post/${props.post.id}`);
 };
 const handleAddComment = (text) => {

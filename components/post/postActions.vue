@@ -1,6 +1,9 @@
 <template>
     <div class="post-actions">
-        <div class="post-actions__item post-actions__item--like" @click.stop="likePost">
+        <div
+            class="post-actions__item post-actions__item--like"
+            @click.stop="likePost"
+        >
             <Icon
                 :name="`fluent:thumb-like-24-${iconLike}`"
                 class="post-actions__icon"
