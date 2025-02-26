@@ -1,5 +1,5 @@
 <template>
-    <div class="post-card" @click="routerToPost">
+    <div class="post-card" @click.prevent="routerToPost">
         <div class="post-card__col">
             <UserAvatar :src="user.avatar" />
         </div>
@@ -14,17 +14,22 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps(["post", "user"]);
+<script setup lang="ts">
+const { post, user } = defineProps<{
+    post?: Object;
+    user?: Object;
+}>();
 const router = useRouter();
 
-const routerToPost = (e) => {
-    e.preventDefault();
-    router.push(`/post/${props.post.id}`);
+
+const routerToPost = () => {
+    if(!post) {
+        console.log("Already on post page");
+        return;
+    }
+    router.push(`/post/${post.id}`);
 };
-const handleAddComment = (text) => {
-    console.log("Новий коментар:", text);
-};
+
 </script>
 
 <style lang="scss">
