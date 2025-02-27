@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
 
 const { title, backLink, dots, views } = defineProps<{
     title: string;
@@ -9,11 +9,6 @@ const { title, backLink, dots, views } = defineProps<{
 }>();
 
 const { t } = useI18n();
-
-definePageMeta({
-    title: 'Feed',
-    description: 'Feed page',
-});
 </script>
 
 <template>
@@ -21,17 +16,25 @@ definePageMeta({
         <div class="content__title">
             <div class="content__blocks">
                 <div class="content__item">
-                    <NuxtLink v-if="backLink" :to="backLink" class="content__item--link">
+                    <NuxtLink
+                        v-if="backLink"
+                        :to="backLink"
+                        class="content__item--link"
+                    >
                         <Icon name="fluent:arrow-circle-left-24-regular" />
                     </NuxtLink>
                 </div>
                 <div class="content__item">
                     <h1>{{ t(title) }}</h1>
-                    <span v-if="views" class="content__views">{{ t("views", {col: views})}}</span>
+                    <span v-if="views" class="content__views">{{
+                        t("views", { col: views })
+                    }}</span>
                 </div>
-                <div  class="content__item">
+                <div class="content__item">
                     <div v-if="dots" class="content__button">
-                        <Icon name="fluent:re-order-dots-horizontal-24-regular" />
+                        <Icon
+                            name="fluent:re-order-dots-horizontal-24-regular"
+                        />
                     </div>
                 </div>
             </div>
@@ -49,11 +52,11 @@ definePageMeta({
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
 
     width: 640px;
-    height: 100%;
+    height: auto;
 
     padding-bottom: 20px;
 
@@ -156,7 +159,7 @@ definePageMeta({
         }
     }
 
-    &__views{
+    &__views {
         font-size: 12px;
         color: var(--secondary-text);
     }
@@ -168,7 +171,6 @@ definePageMeta({
         flex-direction: column;
 
         width: 100%;
-        height: 100%;
 
         border: 1px solid var(--border);
         border-top: 0;

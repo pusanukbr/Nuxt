@@ -15,16 +15,16 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
 </script>
 
 <template>
-        <HeaderPage title="feed">
-            <SkeletonPost v-if="pending" v-for="n in 12" :key="n" />
-            <PostCard
-                v-else
-                v-for="post in posts"
-                :key="post.id"
-                :post="post"
-                :user="post.user"
-            />
-        </HeaderPage>
+    <HeaderPage title="feed">
+        <SkeletonPost v-if="!pending" v-for="n in 2" :key="n" />
+        <PostCard
+            v-else
+            v-for="post in posts"
+            :key="post.id"
+            :post="post"
+            :user="post.user"
+        />
+    </HeaderPage>
 </template>
 
 <style lang="scss"></style>

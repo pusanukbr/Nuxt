@@ -1,10 +1,19 @@
+<script setup lang="ts">
+const { post, user } = defineProps<{
+    post?: Object;
+    user?: Object;
+}>();
+
+const router = useRouter();
+</script>
+
 <template>
-    <div class="post-card" @click="routerToPost">
-        <div class="post-card__col">
+    <div class="pagePost-card">
+        <div class="pagePost-card__header">
             <UserAvatar :src="user.avatar" />
-        </div>
-        <div class="post-card__col">
             <PostHeader :user="user" :createdAt="post.createdAt" />
+        </div>
+        <div class="pagePost-card__col">
             <PostContent :content="post.content" />
             <PostActions
                 :likes="post.likes"
@@ -14,33 +23,22 @@
     </div>
 </template>
 
-<script setup lang="ts">
-const { post, user } = defineProps<{
-    post?: Object;
-    user?: Object;
-}>();
-const router = useRouter();
-
-const routerToPost = () => {
-    router.push(`/post/${post.id}`);
-};
-</script>
-
 <style lang="scss">
-.post-card {
+.pagePost-card {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-
-    width: 100%;
-
-    padding: 1rem;
-
+    padding: 24px;
     border-bottom: 1px solid var(--border);
-
-    cursor: pointer;
 
     &:last-child {
         border-bottom: none;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
 
     &__col {

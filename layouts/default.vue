@@ -36,7 +36,9 @@ const { t } = useI18n();
         display: flex;
         justify-content: center;
         flex-grow: 1;
+
         width: 100%;
+        height: auto;
 
         padding-left: 100px;
     }
