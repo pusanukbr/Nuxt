@@ -16,7 +16,7 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
 
 <template>
     <HeaderPage title="feed">
-        <SkeletonPost v-if="!pending" v-for="n in 2" :key="n" />
+        <SkeletonPost v-if="pending" v-for="n in 12" :key="n" />
         <PostCard
             v-else
             v-for="post in posts"

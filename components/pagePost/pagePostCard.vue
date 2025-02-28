@@ -29,6 +29,7 @@ const router = useRouter();
     flex-direction: column;
     gap: 1rem;
     padding: 24px;
+    padding-bottom: 0;
     border-bottom: 1px solid var(--border);
 
     &:last-child {

@@ -29,7 +29,14 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
                 <SkeletonPost v-if="pending" />
                 <PagePostCard v-else :post="post" :user="post.user" />
             </div>
-            <div class="page-post__activity"></div>
+            <div class="page-post__activity">
+                <div class="page-post__activity--wrapper">
+                    <span class="page-post__activity--answer">Відповіді</span>
+                    <div class="page-post__activity--watch">
+                        <span>Переглянути дії <Icon name="" /></span>
+                    </div>
+                </div>
+            </div>
             <div class="page-post__comment"></div>
         </div>
     </HeaderPage>
@@ -43,5 +50,45 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
     flex-grow: 1;
 
     height: 100%;
+
+    &__activity {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        width: 100%;
+
+        padding: 0 24px;
+
+        font-size: 14px;
+
+        &--wrapper {
+            display: flex;
+
+            width: 100%;
+
+            padding: 24px 0;
+
+            border-top: 1px solid var(--border);
+        }
+
+        &--answer {
+            font-weight: 600;
+            color: var(--primery-text);
+        }
+
+        &--watch {
+            display: flex;
+            justify-content: flex-end;
+
+            width: 100%;
+
+            color: var(--secondary-text);
+
+            span {
+                cursor: pointer;
+            }
+        }
+    }
 }
 </style>

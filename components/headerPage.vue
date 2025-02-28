@@ -171,6 +171,7 @@ const { t } = useI18n();
         flex-direction: column;
 
         width: 100%;
+        height: 100%;
 
         border: 1px solid var(--border);
         border-top: 0;
