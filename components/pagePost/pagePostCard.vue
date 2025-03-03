@@ -3,8 +3,6 @@ const { post, user } = defineProps<{
     post?: Object;
     user?: Object;
 }>();
-
-const router = useRouter();
 </script>
 
 <template>
@@ -28,8 +26,7 @@ const router = useRouter();
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 24px;
-    padding-bottom: 5px;
+    padding: 24px 24px 0;
     border-bottom: 1px solid var(--border);
 
     &:last-child {

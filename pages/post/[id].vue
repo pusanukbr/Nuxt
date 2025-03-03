@@ -7,17 +7,17 @@ definePageMeta({
     middleware: ["track-previous"],
 });
 
-import { useI18n } from "vue-i18n";
-import { useRoute } from "vue-router";
+import {useI18n} from "vue-i18n";
+import {useRoute} from "vue-router";
 
 const router = useRoute();
 const postId = router.params.id;
 const previousPage: string = useState("previousPath");
 const backLink: string =
     previousPage.value === router.path ? "/" : previousPage;
-const { t } = useI18n();
+const {t} = useI18n();
 
-const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
+const {data: post, pending} = useAsyncData(`post-${postId}`, async () => {
     return await $fetch(`/api/posts/${postId}`);
 });
 </script>
@@ -26,18 +26,23 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
     <HeaderPage title="postTitle" :back-link="backLink">
         <div class="page-post">
             <div class="page-post__post">
-                <SkeletonPost v-if="pending" />
-                <PagePostCard v-else :post="post" :user="post.user" />
+                <SkeletonPost v-if="pending"/>
+                <PagePostCard v-else :post="post" :user="post.user"/>
             </div>
             <div class="page-post__activity">
                 <div class="page-post__activity--wrapper">
                     <span class="page-post__activity--answer">Відповіді</span>
                     <div class="page-post__activity--watch">
-                        <span>Переглянути дії <Icon name="" /></span>
+                        <span>Переглянути дії <Icon name=""/></span>
                     </div>
                 </div>
             </div>
-            <div class="page-post__comment"></div>
+            <div class="page-post__comment"
+                 v-if="post.comments.length > 0"
+                 v-for="comment in post.comments"
+                 :key="comment.id">
+                <Comments :comment="comment" :deep="0"/>
+            </div>
         </div>
     </HeaderPage>
 </template>
