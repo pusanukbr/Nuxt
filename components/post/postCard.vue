@@ -9,6 +9,7 @@
             <PostActions
                 :likes="post.likes"
                 :commentsCount="post.comments.length"
+                @openComments="routerToPost"
             />
         </div>
     </div>

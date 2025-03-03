@@ -10,7 +10,7 @@
             />
             <span>{{ likes }}</span>
         </div>
-        <div class="post-actions__item" @click.stop>
+        <div class="post-actions__item" @click.stop="openComments">
             <Icon name="fluent:comment-24-regular" class="post-actions__icon" />
             <span>{{ commentsCount }}</span>
         </div>
@@ -26,14 +26,20 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps(["likes", "commentsCount"]);
-
+const emit = defineEmits<{
+    (event: "openComments"): void;
+}>();
 const iconLike = ref("regular");
 
 const likePost = () => {
     console.log("Like post");
     iconLike.value = "filled";
+};
+
+const openComments = () => {
+    emit("openComments");
 };
 </script>
 
