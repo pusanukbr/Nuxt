@@ -204,7 +204,22 @@ const posts: Post[] = [
             text: "Чудово написано!",
             createdAt: "2025-02-05T08:50:28.879574Z",
             views: 47,
-            replies: [],
+            replies: [
+              {
+                id: 8766,
+                user: {
+                  id: 4,
+                  username: "alex",
+                  avatar:
+                    "https://xsgames.co/randomusers/assets/avatars/male/5.jpg",
+                  name: "Alex",
+                },
+                text: "Test!",
+                createdAt: "2025-02-03T01:50:28.879580Z",
+                views: 51,
+                replies: [],
+              },
+            ],
           },
           {
             id: 967,
