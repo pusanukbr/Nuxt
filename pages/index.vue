@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
+import { I18nD, useI18n } from "vue-i18n";
 import HeaderPage from "../components/headerPage.vue";
 const { t } = useI18n();
+const router = useRouter();
 
 definePageMeta({
     title: "Feed",
@@ -12,6 +13,10 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
     // await new Promise((resolve) => setTimeout(resolve, 2000)); // Імітація затримки
     return await $fetch("/api/posts");
 });
+
+const routerToPost = (id: number) => {
+    router.push(`/post/${id}`);
+};
 </script>
 
 <template>
@@ -23,6 +28,7 @@ const { data: posts, pending } = useAsyncData("posts", async () => {
             :key="post.id"
             :post="post"
             :user="post.user"
+            @click="routerToPost(post.id)"
         />
     </HeaderPage>
 </template>

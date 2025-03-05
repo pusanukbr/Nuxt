@@ -1,5 +1,5 @@
 <template>
-    <div class="post-card" @click="routerToPost">
+    <div class="post-card">
         <div class="post-card__col">
             <UserAvatar :src="user.avatar" />
         </div>

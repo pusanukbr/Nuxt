@@ -1,75 +1,125 @@
-# Nuxt Minimal Starter
+# Проектний план: Соціальна мережа Threads-like
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 1. Вступ
 
-## Setup
+Проект являє собою соціальну мережу, схожу на Threads
 
-Make sure to install dependencies:
+## 2. Технологічний стек
 
-```bash
-# npm
-npm install
+- **Frontend**: Nuxt.js (Vue 3, Composition API, Pinia)
+- **Стилізація**: SCSS
+- **Деплоймент**: CI/CD (GitHub Actions)
 
-# pnpm
-pnpm install
+## 3. Функціонал
 
-# yarn
-yarn install
+### 3.1. Аутентифікація
 
-# bun
-bun install
+- Реєстрація та вхід через email/password
+- Скидання пароля
+- Захист сесії (JWT, refresh tokens)
+
+### 3.2. Основний функціонал
+
+- **Створення постів** (текст, зображення, відео)
+- **Коментування постів**
+- **Коментування коментарів**
+- **Лайки та реакції**
+- **Перепостинг**
+- **Хештеги та пошук**
+- **Система підписок та стрічка постів**
+
+### 3.3. Користувачі та профілі
+
+- **Редагування профілю** (аватар, біографія, посилання)
+- **Система підписників та підписок**
+- **Перегляд чужих профілів**
+
+### 3.4. Нотифікації
+
+- **В реальному часі**
+- **Push-сповіщення**
+- **Email-сповіщення**
+
+### 3.6. Модерація та безпека
+
+- **Система банів**
+- **Модерація контенту (фільтрація образливих слів)**
+- **Скарги на користувачів та контент**
+
+## 4. Архітектура проекту
+
+### 4.1. Frontend структура (Nuxt.js)
+
+```
+/project
+│── assets/      # Файли глобальних стилів, іконки, та картинки для відображення
+│── components/  # Компоненти UI
+│── pages/       # Nuxt сторінки
+│── store/       # Pinia (стейт-менеджмент)
+│── layouts/     # Глобальні макети
+│── middleware/  # Middleware для захисту маршрутів
+│── assets/      # Статичні ресурси
+│── utils/       # Допоміжні функції
+│── services/    # API запити
+│── types/       # TypeScript інтерфейси
+│── nuxt.config.ts  # Налаштування Nuxt
 ```
 
-## Development Server
+### 4.2. Backend структура (за наявності окремого бекенду)
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```
+/backend
+│── src/
+│   │── controllers/
+│   │── services/
+│   │── models/
+│   │── middleware/
+│   │── routes/
+│   │── database/
+│── package.json
+│── .env
 ```
 
-## Production
+## 5. Дизайн та UX/UI
 
-Build the application for production:
+- **Мінімалістичний та зручний інтерфейс**
+- **Світла та темна тема**
+- **Адаптивність для мобільних пристроїв**
 
-```bash
-# npm
-npm run build
+## 6. Тестування
 
-# pnpm
-pnpm build
+- **Unit-тести (Vitest, Jest)**
+- **E2E тести (Cypress, Playwright)**
+- **Перевірка безпеки API**
 
-# yarn
-yarn build
+## 7. Деплоймент та CI/CD
 
-# bun
-bun run build
-```
+- **GitHub Actions для автоматизації**
+- **Vercel / Netlify для фронтенду**
+- **Docker для бекенду**
+- **PostgreSQL / MongoDB на хмарному сервісі**
 
-Locally preview production build:
+## 8. Розширення в майбутньому
 
-```bash
-# npm
-npm run preview
+- **Голосові та відеодзвінки**
+- **Функціонал історій (як у Instagram)**
+- **AI-генерація тексту для постів**
+- **Донати та підписки**
 
-# pnpm
-pnpm preview
+## 9. План розробки (MVP)
 
-# yarn
-yarn preview
+### Фаза 1: Базовий функціонал
 
-# bun
-bun run preview
-```
+✅ Структура проекту ✅ Реєстрація та вхід ✅ Створення постів ✅ Стрічка новин ✅ Підписки на користувачів
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Фаза 2: Взаємодія
+
+⬜ Коментарі та лайки ⬜ Нотифікації ⬜ Профілі користувачів
+
+### Фаза 3: Додатковий функціонал
+
+⬜ Чати та повідомлення ⬜ Пошук і хештеги ⬜ Адміністративна панель
+
+---
+
+Цей план може змінюватися в процесі розробки залежно від пріоритетів та зворотного зв'язку.

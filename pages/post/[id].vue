@@ -43,7 +43,7 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
                 v-for="comment in post.comments"
                 :key="comment.id"
             >
-                <Comments :comment="comment" :deep="0" />
+                <Comments :comment="comment" />
             </div>
         </div>
     </HeaderPage>
@@ -96,6 +96,10 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
                 cursor: pointer;
             }
         }
+    }
+
+    &__comment {
+        padding: 0 24px;
     }
 }
 </style>
