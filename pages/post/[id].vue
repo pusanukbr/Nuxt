@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import HeaderPage from "../../components/headerPage.vue";
-
 definePageMeta({
     title: "Post",
     description: "Post page",
     middleware: ["track-previous"],
 });
 
+import HeaderPage from "../../components/headerPage.vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
+const { t } = useI18n();
 
 const router = useRoute();
 const postId = router.params.id;
 const previousPage: string = useState("previousPath");
 const backLink: string =
     previousPage.value === router.path ? "/" : previousPage;
-const { t } = useI18n();
+
 
 const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
     return await $fetch(`/api/posts/${postId}`);
@@ -39,7 +39,7 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
             </div>
             <div
                 class="page-post__comment"
-                v-if="post.comments.length > 0"
+                v-if="post?.comments?.length > 0"
                 v-for="comment in post.comments"
                 :key="comment.id"
             >

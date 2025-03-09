@@ -20,7 +20,7 @@ const hideReplies = ref(true);
                 />
                 <PostContent :content="comment.text" />
                 <PostActions
-                    :likes="comment.likes"
+                    :likes="comment?.likes"
                     :commentsCount="comment.replies.length"
                 />
             </div>
