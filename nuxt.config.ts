@@ -8,13 +8,6 @@ export default defineNuxtConfig({
       "/_nuxt/**": { headers: { "cache-control": "no-store, max-age=0" } },
     },
   },
-  vite: {
-    server: {
-      watch: {
-        usePolling: true,
-      },
-    },
-  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
   modules: [
@@ -45,6 +38,10 @@ export default defineNuxtConfig({
   fonts: {
     families: [{ name: "Montserrat", provider: "google" }],
   },
+  image: {
+    provider: 'ipx',
+    domains: ['xsgames.co']
+  },
   icon: {
     serverBundle: {
       collections: ["fluent"], // <!--- this
@@ -59,6 +56,11 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/scss/main.scss"],
   vite: {
+    server: {
+      watch: {
+        usePolling: true,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
