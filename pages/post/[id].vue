@@ -49,6 +49,7 @@ const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
     </HeaderPage>
 </template>
 
+
 <style lang="scss">
 .page-post {
     display: flex;
