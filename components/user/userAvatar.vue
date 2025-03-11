@@ -12,10 +12,10 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    src: String
-})
+<script setup lang="ts">
+const { src } = defineProps<{
+    src: String;
+}>();
 
 const loading = ref(true)
 const onLoad = () => {
