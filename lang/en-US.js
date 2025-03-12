@@ -39,4 +39,8 @@ export default {
     feedDescription: "News Feed",
     postTitle: "Post",
     backLink: "Back",
+    showRepliesOne: "Show {count} reply",
+    showRepliesAll: "Show all {count} replies",
+    addComment: "Add yours comments",
+    addCommentTitle: "Add comment"
 };

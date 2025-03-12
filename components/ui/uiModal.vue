@@ -67,13 +67,16 @@ onClickOutside(modalRef, closeModal);
     z-index: 50;
 
     &__content {
-        background: #fff;
+        background: var(--secondary-bg);
         padding: 20px;
         border-radius: 8px;
         position: relative;
         min-width: 300px;
         max-width: 500px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: var(--primary-text);
+        font-family: var(--font-family);
+        transition: all 0.3s ease;
     }
 
     &__close {
@@ -84,11 +87,11 @@ onClickOutside(modalRef, closeModal);
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: #666;
+        color: var(--secondary-text);
         transition: color 0.2s;
 
         &:hover {
-            color: #333;
+            color: var(--primary-text);
         }
     }
 
@@ -97,6 +100,20 @@ onClickOutside(modalRef, closeModal);
         display: flex;
         justify-content: flex-end;
         gap: 10px;
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: var(--button-hover-bg);
+            }
+        }
     }
 }
 </style>

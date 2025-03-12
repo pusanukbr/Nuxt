@@ -58,7 +58,7 @@ const { t } = useI18n();
     width: 640px;
     height: auto;
 
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
 
     h1 {
         font-size: 16px;
@@ -175,7 +175,9 @@ const { t } = useI18n();
 
         border: 1px solid var(--border);
         border-top: 0;
-        border-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
 
         background-color: var(--secondary-bg);
     }

@@ -10,10 +10,14 @@
 
         <!-- Login Button -->
         <LoginButton />
+
+        <!-- Footer -->
+        <Footer />
     </div>
 </template>
 
 <script setup lang="ts">
+import Footer from "../components/layout/footer.vue";
 import LoginButton from "../components/layout/loginButton.vue";
 import Header from "../components/layout/header.vue";
 import { useI18n } from "vue-i18n";

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 const { comment } = defineProps<{
     comment: Object;
 }>();
@@ -34,7 +38,7 @@ const hideReplies = ref(true);
                 v-if="hideReplies"
                 @click="hideReplies = !hideReplies"
             >
-                Show replies {{ comment.replies.langth }}
+                {{ comment.replies.length === 1 ? t('showRepliesOne', { count: comment.replies.length }) : t('showRepliesAll', { count: comment.replies.length }) }}
             </div>
             <div
                 class="comment__replies"
@@ -55,7 +59,6 @@ const hideReplies = ref(true);
 <style lang="scss">
 .comment {
     position: relative;
-    //border: 1px solid red;
 
     &--haveReplies {
         margin-bottom: 16px;
@@ -82,7 +85,7 @@ const hideReplies = ref(true);
 
     &__border {
         position: absolute;
-        top: 36px;
+        top: 38px;
         left: 16px;
         width: 2px;
         height: calc(100% - 60px);
@@ -95,17 +98,14 @@ const hideReplies = ref(true);
     }
 
     &__replies {
-
+        padding: 10px 0;
         .comment {
-            &__border {
-
-            }
             &__border-radius {
                 position: absolute;
                 top: -15px;
                 left: -26px;
                 width: 22px;
-                height: 32px;
+                height: 36px;
                 border-color: var(--border);
                 border-bottom-left-radius: 10px;
                 border-bottom-style: solid;

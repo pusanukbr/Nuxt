@@ -4,8 +4,8 @@
         <NuxtImg
             :src="src"
             class="avatar"
-            width="32"
-            height="32"
+            width="36"
+            height="36"
             @load="onLoad"
             :class="{ hidden: loading }"
         />
@@ -26,15 +26,15 @@ const onLoad = () => {
 <style scoped lang="scss">
 .image-wrapper {
     position: relative;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex;
 }
 
 .avatar,
 .skeleton {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: block;
     padding: 0;
