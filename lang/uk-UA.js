@@ -44,5 +44,6 @@ export default {
   showRepliesOne: "Показати {count} відповідь",
   showRepliesAll: "Показати всі {count} відповіді",
   addComment: "Додайте ваш коментар",
-  addCommentTitle: "Додати коментар"
+  addCommentTitle: "Додати коментар",
+  close: "Скасувати"
 };

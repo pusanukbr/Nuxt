@@ -24,6 +24,29 @@
 
     --first-skeleton: #e6e6e6;
     --second-skeleton: #f2f2f2;
+
+    // Paddings
+    --padding-small: 10px;
+    --padding-medium: 20px;
+    --padding-large: 30px;
+    --padding-xlarge: 40px;
+    --padding-xxlarge: 50px;
+    --padding-xxxlarge: 60px;
+
+    // Fonts
+    --font-family: "Inter", sans-serif;
+    --font-size-small: 12px;
+    --font-size-medium: 14px;
+    --font-size-large: 16px;
+    --font-size-xlarge: 18px;
+    --font-size-xxlarge: 20px;
+    --font-size-xxxlarge: 24px;
+    
+    // Widths
+    --width-content: 640px;
+
+    // Border Radius
+    --border-radius: 20px;
 }
 
 .dark {

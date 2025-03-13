@@ -42,5 +42,6 @@ export default {
     showRepliesOne: "Show {count} reply",
     showRepliesAll: "Show all {count} replies",
     addComment: "Add yours comments",
-    addCommentTitle: "Add comment"
+    addCommentTitle: "Add comment",
+    close: "Cancel"
 };

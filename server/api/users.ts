@@ -1,34 +1,32 @@
-export default defineEventHandler(() => {
-  return [
-    {
-      id: 1,
-      username: "john_doe",
-      avatar: "/avatars/john.png",
-      name: "John Doe",
-    },
-    {
-      id: 2,
-      username: "jane_smith",
-      avatar: "/avatars/jane.png",
-      name: "Jane Smith",
-    },
-    {
-      id: 3,
-      username: "mike_tyson",
-      avatar: "/avatars/mike.png",
-      name: "Mike Tyson",
-    },
-    {
-      id: 4,
-      username: "emma_watson",
-      avatar: "/avatars/emma.png",
-      name: "Emma Watson",
-    },
-    {
-      id: 5,
-      username: "elon_musk",
-      avatar: "/avatars/elon.png",
-      name: "Elon Musk",
-    },
-  ];
-});
+export const users = [
+  {
+    id: 1,
+    username: "john_doe",
+    avatar: "avatar1.png",
+    name: "John Doe",
+  },
+  {
+    id: 2,
+    username: "jane_doe",
+    avatar: "avatar2.png",
+    name: "Jane Doe",
+  },
+  {
+    id: 3,
+    username: "mike_tyson",
+    avatar: "avatar3.png",
+    name: "Mike Tyson",
+  },
+  {
+    id: 4,
+    username: "emma_watson",
+    avatar: "avatar4.png",
+    name: "Emma Watson",
+  },
+  {
+    id: 5,
+    username: "bruce_wayne",
+    avatar: "batman.png",
+    name: "Bruce Wayne",
+  },
+]; 

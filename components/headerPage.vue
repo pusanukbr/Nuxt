@@ -55,7 +55,7 @@ const { t } = useI18n();
     justify-content: start;
     flex-direction: column;
 
-    width: 640px;
+    width: var(--width-content);
     height: auto;
 
     // padding-bottom: 20px;

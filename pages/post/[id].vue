@@ -10,7 +10,7 @@ import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 const { t } = useI18n();
 
-const showModal = ref(false);
+const showModal = ref(true);
 
 const router = useRoute();
 const postId = router.params.id;
@@ -22,6 +22,7 @@ const backLink: string =
 const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
     return await $fetch(`/api/posts/${postId}`);
 });
+
 
 const openMadal = () => {
     showModal.value = true;
@@ -59,13 +60,25 @@ const openMadal = () => {
             </div>
         </div>
     </HeaderPage>
-    <UiModal v-model="showModal" id="postModal">
-        <h2 class="modal__title">{{ t('addCommentTitle') }}</h2>
+    <UiModal v-model="showModal" id="modal-post" title="addCommentTitle">
         <div class="modal__post">
             <SkeletonPost v-if="pending" />
-            <PagePostCard v-else :post="post" :user="post.user" />
+            <div v-else class="modal__post--wrapper">
+                <div class="modal__post--wrapper-avatar">
+                    <UserAvatar :src="post.user.avatar" />
+                </div>
+                <div class="modal__post--wrapper-content">
+                    <PostHeader :user="post.user" :createdAt="post.createdAt" />
+                    <PostContent :content="post.content" />
+                </div>
+            </div>
         </div>
-        <UiBaseInput v-model="comment" :placeholder="t('addComment')" />
+        <div class="modal__post--input">
+            <div class="modal__post--input-avatar">
+                <UserAvatar :src="user.avatar" />
+            </div>
+            <UiBaseInput v-model="comment" :placeholder="t('addComment')" />
+        </div>
 
         <div class="modal__submit">
             <button type="submit" class="modal__submit-button">
@@ -172,6 +185,37 @@ const openMadal = () => {
         padding: 10px 24px;
 
         border-top: 1px solid var(--border);
+    }
+}
+
+.modal__post {
+    padding: var(--padding-medium);
+
+    &--wrapper {
+        position: relative;
+        display: flex;
+        gap: 10px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 18px;
+
+            display: block;
+
+            width: 2px;
+            height: calc(100% - 20px);
+
+            background-color: var(--border);
+        }
+        
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+        }
     }
 }
 </style>
