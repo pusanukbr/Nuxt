@@ -64,6 +64,7 @@ import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { isEmail, minLength, required } from "../../utils/validationRules";
 import { validateInput } from "../../utils/validation";
+import { useAuthStore } from "../../store/authStore";
 
 // Використовуємо i18n
 const { t } = useI18n();
@@ -92,6 +93,8 @@ const formValid = computed(() =>
     Object.values(errors.value).every((error) => !error),
 );
 
+const authStore = useAuthStore();
+
 function inputHandler() {
     errors.value.email = validateInput(form.email, emailRules);
     errors.value.password = validateInput(form.password, passwordRules);
@@ -106,9 +109,29 @@ function handleSubmit() {
     }
 
     // Відправка форми
+    fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Authentication failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem('token', data.token);
+            authStore.login(data.user);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
     // Очистка форми
-    Object.assign(form, { email: "", password: "" });
+    Object.assign(form, { email: '', password: '' });
 }
 </script>
 

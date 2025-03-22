@@ -41,4 +41,9 @@ export default {
   postTitle: "Ланцюжок",
   backLink: "Повернутися",
   views: "{col} переглядів",
+  showRepliesOne: "Показати {count} відповідь",
+  showRepliesAll: "Показати всі {count} відповіді",
+  addComment: "Додайте ваш коментар",
+  addCommentTitle: "Додати коментар",
+  close: "Скасувати"
 };

@@ -115,7 +115,6 @@ onClickOutside(
     padding-bottom: 20px;
 
     background-color: var(--primary-bg);
-    box-shadow: 0 0 10px 1px var(--box-shadow);
 
     .menu {
         display: flex;

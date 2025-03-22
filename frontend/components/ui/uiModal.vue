@@ -1,22 +1,13 @@
-<template>
-    <div v-if="visible" class="modal">
-        <div ref="modalRef" class="modal__content">
-            <button class="modal__close" @click="closeModal">×</button>
-            <slot />
-            <div v-if="$slots.buttons" class="modal__buttons">
-                <slot name="buttons" />
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n();
 interface Props {
     modelValue: boolean;
     id: string;
+    title?: string;
 }
 
 const props = defineProps<Props>();
@@ -56,47 +47,111 @@ onUnmounted(() => {
 onClickOutside(modalRef, closeModal);
 </script>
 
+<template>
+    <div v-if="visible" class="modal">
+        <div ref="modalRef" class="modal__content">
+            <div class="modal__header">
+                <div class="modal__close" @click="closeModal">{{ t('close') }}</div>
+                <h2 class="modal__title" v-if="title">{{ t(title) }}</h2>
+                <div class="modal__dots">
+                    <Icon name="fluent:re-order-dots-vertical-24-regular" class="icon" />
+                </div>
+            </div>
+            <slot />
+            <div v-if="$slots.buttons" class="modal__buttons">
+                <slot name="buttons" />
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped lang="scss">
 .modal {
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 50;
+
+    padding-left: 100px;
+
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: 150;
 
     &__content {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
         position: relative;
-        min-width: 300px;
-        max-width: 500px;
+
+        width: var(--width-content);
+
+        background: var(--secondary-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+        color: var(--primary-text);
+        font-family: var(--font-family);
+
+        transition: all 0.3s ease;
+    }
+
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;   
+        
+        width: 100%;
+
+        padding: 20px 20px;
+
+        border-bottom: 1px solid var(--border);
     }
 
     &__close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: #666;
-        transition: color 0.2s;
+        width: 70px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
 
-        &:hover {
-            color: #333;
-        }
+        cursor: pointer;
     }
 
+
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__dots {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        
+    }
+
+    
     &__buttons {
         margin-top: 20px;
         display: flex;
         justify-content: flex-end;
         gap: 10px;
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: var(--button-hover-bg);
+            }
+        }
     }
 }
 </style>

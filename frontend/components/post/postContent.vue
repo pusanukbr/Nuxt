@@ -8,6 +8,8 @@ defineProps(["content"]);
 
 <style lang="scss">
 .post-content {
+    padding: 5px 0;
+
     font-size: 14px;
     font-weight: normal;
     line-height: 1.5;

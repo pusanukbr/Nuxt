@@ -4,10 +4,10 @@
 
   "include": ["*.d.ts",
     "types"
-  ],
+  , "server/api"],
   "compilerOptions": {
     "types": ["node", "vue", "./types/vue-i18n", "@nuxt/types"],
-    "baseUrl": "..",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["*"]
     }
