@@ -3,7 +3,7 @@
         <Logo />
         <nav class="menu">
             <li class="menu__item">
-                <NuxtLink to="/" class="menu__link">
+                <NuxtLink to="/frontend/public" class="menu__link">
                     <Icon
                         name="fluent:home-24-regular"
                         class="menu__item--icon"
@@ -11,7 +11,7 @@
                 </NuxtLink>
             </li>
             <li class="menu__item">
-                <NuxtLink to="/" class="menu__link">
+                <NuxtLink to="/frontend/public" class="menu__link">
                     <Icon
                         name="fluent:search-24-regular"
                         class="menu__item--icon"
@@ -27,7 +27,7 @@
                 </button>
             </li>
             <li class="menu__item">
-                <NuxtLink to="/" class="menu__link">
+                <NuxtLink to="/frontend/public" class="menu__link">
                     <Icon
                         name="fluent:heart-24-regular"
                         class="menu__item--icon"
@@ -35,7 +35,7 @@
                 </NuxtLink>
             </li>
             <li class="menu__item">
-                <NuxtLink to="/" class="menu__link">
+                <NuxtLink to="/frontend/public" class="menu__link">
                     <Icon
                         name="fluent:person-24-regular"
                         class="menu__item--icon"

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <NuxtLink to="/">
+        <NuxtLink to="/frontend/public">
             <svg
                 width="80"
                 height="80"
