@@ -1,22 +1,80 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
 
-export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (err: any) {
-        res.status(500).json({ message: err.message });
-    }
-};
+import jwt from 'jsonwebtoken';
 
-export const createUser = async (req: Request, res: Response): Promise<void> => {
+//Generete JWT token
+const generateToken = (id: string) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET || '', {
+        expiresIn: '1h',
+    });
+}
+
+// Register User
+export const registerUser = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
-    try {
-        const newUser = new User({ name, email, password });
-        await newUser.save();
-        res.status(201).json(newUser);
-    } catch (err: any) {
-        res.status(400).json({ message: err.message });
+
+    // Validate user
+    if(!name || !email || !password) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
     }
-};
+
+    try {
+        let user = await User.findOne({ email });
+
+        if(user) {
+            return res.status(400).json({ msg: 'User already exists' });
+        }
+
+        user = new User({
+            name,
+            email,
+            password
+        });
+
+        await user.save();
+
+        const token = generateToken(user._id);
+
+        res.status(201).json({ id: user._id, user, token });
+    } catch (error: any) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+}
+
+// Login User
+export const loginUser = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    // Validate user
+    if(!email || !password) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+
+    try {
+        let user = await User.findOne({email});
+
+        if (!user) {
+            return res.status(400).json({msg: 'User does not exist'});
+        }
+
+        const isMatch = await user.matchPassword(password);
+
+        if (!isMatch) {
+            return res.status(400).json({msg: 'Invalid credentials'});
+        }
+
+        const token = generateToken(user._id);
+
+        res.status(200).json({id: user._id, user, token});
+    } catch (error: any) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+}
+
+// Get User Info
+export const getUserInfo = async (req: Request, res: Response) => {
+
+}
