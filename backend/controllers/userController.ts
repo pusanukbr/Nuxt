@@ -47,13 +47,14 @@ export const registerUser = async (req: Request, res: Response) => {
 export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
+    console.log(email, password);
     // Validate user
     if(!email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
 
     try {
-        let user = await User.findOne({email});
+        let user = await User.findOne({ email });
 
         if (!user) {
             return res.status(400).json({msg: 'User does not exist'});
@@ -76,5 +77,16 @@ export const loginUser = async (req: Request, res: Response) => {
 
 // Get User Info
 export const getUserInfo = async (req: Request, res: Response) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
 
+        if (!user) {
+            return res.status(404).json({msg: 'User not found'});
+        }
+
+        res.status(200).json(user);
+    } catch (error: any) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
 }
