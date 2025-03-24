@@ -20,4 +20,7 @@ app.get('/', (_, res) => {
 
 app.use('/api/v1/auth', authRoutes);
 
+// Server upload folder
+app.use('/uploads', express.static('uploads'));
+
 export default app;
