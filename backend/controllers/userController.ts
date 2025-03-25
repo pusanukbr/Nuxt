@@ -47,7 +47,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    console.log(email, password);
     // Validate user
     if(!email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' });
