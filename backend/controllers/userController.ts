@@ -12,10 +12,12 @@ const generateToken = (id: string) => {
 
 // Register User
 export const registerUser = async (req: Request, res: Response) => {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
 
+    console.log('req.body', req.body);
+    
     // Validate user
-    if(!name || !email || !password) {
+    if(!username || !email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
 
@@ -27,7 +29,7 @@ export const registerUser = async (req: Request, res: Response) => {
         }
 
         user = new User({
-            name,
+            username,
             email,
             password
         });

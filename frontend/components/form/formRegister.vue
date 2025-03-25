@@ -112,7 +112,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { useUserStore } from "../../store/authStore";
+import { useAuthStore } from "../../store/auth";
 import {
     confirmPassword,
     isEmail,
@@ -184,6 +184,21 @@ const handleSubmit = async () => {
         showErrors.value = true;
         return;
     }
+
+    const userStore = useAuthStore();
+    const response = await userStore.register(form.email, form.password, form.username);
+    if (response.status === 200) {
+        // Route to main page
+        Route.push({ name: "home" });
+    } else if (response.status === 409) { // Email already exists
+        modalValue.value = "emailExist";
+        showModal.value = true;
+    } else { // Other error
+        modalValue.value = "registerError";
+        showModal.value = true;
+    }
+        
+    
 };
 </script>
 
