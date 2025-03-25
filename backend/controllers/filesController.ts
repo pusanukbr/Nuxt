@@ -19,10 +19,14 @@ const deleteFile = (filePath: string) => {
 
 export const fileController = async (req: REQUser, res: Response) => {
     if (!req.file) {
+        console.log(req.user)
         return res.status(400).json({ msg: 'Please select a file' });
     }
     // Assuming the user's current avatar path is stored in req.user.avatar
-    const currentAvatarPath = req.user.avatar;
+    const currentAvatarPath = req.user.avatar.split('/')[req.user.avatar.split('/').length - 1];
+    if (currentAvatarPath && currentAvatarPath === req.file.originalname) {
+        return res.status(400).json({ msg: 'Change file' });
+    }
 
     // Delete the old avatar if it exists
     if (currentAvatarPath) {
