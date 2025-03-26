@@ -8,9 +8,11 @@
 import { onMounted } from "vue";
 import { useThemeStore } from "./store/theme";
 import { useI18n } from "vue-i18n";
+import { useAuthStore } from "./store/auth";
 
 const themeStore = useThemeStore();
 const { t } = useI18n();
+const authStore = useAuthStore();
 
 onMounted(() => {
     // Підтягуємо тему в стейт з localStorage, якщо ще не зробили
@@ -27,5 +29,7 @@ onMounted(() => {
                 themeStore.applyTheme("system");
             }
         });
+        
+    authStore.fetchUser();
 });
 </script>

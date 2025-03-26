@@ -6,14 +6,12 @@ export default defineNuxtPlugin(({ $axios }) => {
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
+      ...(process.client && localStorage.getItem('token')
+            ? { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            : {})
     },
   })
 
-  const token = localStorage.getItem('token');
-
-  if (token) {
-    $axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-  }
   return {
     provide: {
       axios: axiosInstance,

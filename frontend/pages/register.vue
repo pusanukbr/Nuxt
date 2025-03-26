@@ -7,6 +7,7 @@ definePageMeta({
     layout: "empty",
     title: "Register",
     description: "Register page",
+    
 });
 </script>
 
