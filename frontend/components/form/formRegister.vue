@@ -8,7 +8,6 @@ import {
     required,
 } from "../../utils/validationRules";
 import { validateInput } from "../../utils/validation";
-import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const { t } = useI18n();
@@ -79,7 +78,7 @@ const handleSubmit = async () => {
     const response = await userStore.register(form.email, form.password, form.username);
     if (response.status === 200) {
         // Route to main page
-        await router.push('/');
+        router.push({ path: "/" });
     } else if (response.status === 409) { // Email already exists
         modalValue.value = "emailExist";
         showModal.value = true;
