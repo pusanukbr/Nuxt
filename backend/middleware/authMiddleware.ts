@@ -6,13 +6,14 @@ import {NextFunction} from "express";
 
 export const protect = async (req: Request, res: Response, next: NextFunction) => {
     let token;
-
+    console.log('req.headers.authorization', req.headers.authorization);
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
     }
 
     // Check if token exists
     if (!token) {
+        console.log('No token');
         return res.status(401).json({msg: 'Not authorized to access this route'});
     }
 

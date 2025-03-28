@@ -1,3 +1,71 @@
+<script setup lang="ts">
+import { computed, reactive, ref } from "vue";
+import { useI18n } from "vue-i18n";
+import { isEmail, minLength, required } from "../../utils/validationRules";
+import { validateInput } from "../../utils/validation";
+import { useAuthStore } from "../../store/auth";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+// Використовуємо i18n
+const { t } = useI18n();
+
+interface FormState {
+    email: string;
+    password: string;
+}
+
+const form = reactive<FormState>({
+    email: "",
+    password: "",
+});
+
+const errors = ref<Record<keyof FormState, string>>({
+    email: "",
+    password: "",
+});
+
+const showErrors = ref(false);
+const showModal = ref(false);
+const modalValue = ref("");
+
+const emailRules = [required(t), isEmail(t)];
+const passwordRules = [required(t), minLength(6, t)];
+
+const formValid = computed(() =>
+    Object.values(errors.value).every((error) => !error),
+);
+
+const authStore = useAuthStore();
+
+const inputHandler = () => {
+    errors.value.email = validateInput(form.email, emailRules);
+    errors.value.password = validateInput(form.password, passwordRules);
+}
+
+const handleSubmit = async () => {
+    inputHandler();
+
+    if (!formValid.value) {
+        showErrors.value = true;
+        return;
+    }
+
+    const response = await authStore.login(form.email, form.password);
+
+    if (response.status === 200) {
+        // Route to main page
+        return await router.push('/');
+    }  else { // Other error
+        modalValue.value = "";
+        showModal.value = true;
+    }
+
+    // Очищування форми
+    Object.assign(form, { email: '', password: '' });
+}
+</script>
+
 <template>
     <form @submit.prevent="handleSubmit" class="login-form">
         <div class="login-form__group">
@@ -57,85 +125,15 @@
             {{ t("login") }}
         </button>
     </form>
+    <UiModal v-model="showModal" id="registerModal">
+        <h2 class="modal__title">{{ t(modalValue) }}</h2>
+        <p v-if="modalValue === 'emailExist'">{{ t("checkEmail") }}</p>
+        <p v-else>Link</p>
+    </UiModal>
 </template>
 
-<script setup lang="ts">
-import { computed, reactive, ref } from "vue";
-import { useI18n } from "vue-i18n";
-import { isEmail, minLength, required } from "../../utils/validationRules";
-import { validateInput } from "../../utils/validation";
-import { useAuthStore } from "../../store/auth";
 
-// Використовуємо i18n
-const { t } = useI18n();
-
-interface FormState {
-    email: string;
-    password: string;
-}
-
-const form = reactive<FormState>({
-    email: "",
-    password: "",
-});
-
-const errors = ref<Record<keyof FormState, string>>({
-    email: "",
-    password: "",
-});
-
-const showErrors = ref(false);
-
-const emailRules = [required(t), isEmail(t)];
-const passwordRules = [required(t), minLength(6, t)];
-
-const formValid = computed(() =>
-    Object.values(errors.value).every((error) => !error),
-);
-
-const authStore = useAuthStore();
-
-function inputHandler() {
-    errors.value.email = validateInput(form.email, emailRules);
-    errors.value.password = validateInput(form.password, passwordRules);
-}
-
-function handleSubmit() {
-    inputHandler();
-
-    if (!formValid.value) {
-        showErrors.value = true;
-        return;
-    }
-
-    // Відправка форми
-    fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Authentication failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            localStorage.setItem('token', data.token);
-            authStore.login(data.user);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-
-    // Очистка форми
-    Object.assign(form, { email: '', password: '' });
-}
-</script>
-
-<style scoped>
+<style>
 .login-form {
     width: 100%;
 

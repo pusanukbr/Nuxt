@@ -1,3 +1,97 @@
+<script setup lang="ts">
+import { computed, reactive, ref } from "vue";
+import { useI18n } from "vue-i18n";
+import { useAuthStore } from "../../store/auth";
+import {
+    isEmail,
+    minLength,
+    required,
+} from "../../utils/validationRules";
+import { validateInput } from "../../utils/validation";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const { t } = useI18n();
+const userStore = useAuthStore();
+
+const form = reactive({
+    username: "",
+    email: "",
+    password: "",
+    confirm: "",
+});
+const modalValue = ref("");
+const errors = ref({ username: "", email: "" });
+const showErrors = ref(false);
+const showModal = ref(false);
+
+const passwordRules = computed(() => [
+    {
+        text: t("passwordCase"),
+        valid: /[a-z]/.test(form.password) && /[A-Z]/.test(form.password),
+    },
+    { text: t("passwordNumber"), valid: /[0-9]/.test(form.password) },
+    {
+        text: t("passwordSpecial", { value: "(!@#$%^&*)" }),
+        valid: /[!@#$%^&*]/.test(form.password),
+    },
+    { text: t("passwordLength", { min: 6 }), valid: form.password.length >= 6 },
+    {
+        text: t("passwordConfirm"),
+        valid: form.password === form.confirm && form.confirm.length > 0,
+    },
+]);
+
+const progress = computed(() => {
+    const startProgress = form.password.length > 0 ? 10 : 0;
+    return (
+        startProgress +
+        (passwordRules.value.filter((rule) => rule.valid).length / 5) * 100
+    );
+});
+
+const progressColor = computed(() => {
+    if (progress.value < 20) return "#da1e28";
+    if (progress.value < 40) return "#8e6a00";
+    if (progress.value < 60) return "#ba4e00";
+    if (progress.value < 80) return "#ff832b";
+    return "#28a745";
+});
+
+const inputHandler = () => {
+    errors.value.username = validateInput(form.username, [
+        required(t),
+        minLength(3, t),
+    ]);
+    errors.value.email = validateInput(form.email, [required(t), isEmail(t)]);
+};
+
+const handleSubmit = async () => {
+    inputHandler();
+    if (
+        !Object.values(errors.value).every((error) => !error) ||
+        progress.value < 100
+    ) {
+        showErrors.value = true;
+        return;
+    }
+
+    const response = await userStore.register(form.email, form.password, form.username);
+    if (response.status === 200) {
+        // Route to main page
+        await router.push('/');
+    } else if (response.status === 409) { // Email already exists
+        modalValue.value = "emailExist";
+        showModal.value = true;
+    } else { // Other error
+        modalValue.value = "registerError";
+        showModal.value = true;
+    }
+
+
+};
+</script>
+
 <template>
     <form class="registration-form" @submit.prevent="handleSubmit">
         <div class="registration-form__field">
@@ -108,99 +202,6 @@
         <p v-else>Link</p>
     </UiModal>
 </template>
-
-<script setup lang="ts">
-import { computed, reactive, ref } from "vue";
-import { useI18n } from "vue-i18n";
-import { useAuthStore } from "../../store/auth";
-import {
-    confirmPassword,
-    isEmail,
-    minLength,
-    required,
-} from "../../utils/validationRules";
-import { validateInput } from "../../utils/validation";
-
-const { t } = useI18n();
-
-const form = reactive({
-    username: "",
-    email: "",
-    password: "",
-    confirm: "",
-});
-const modalValue = ref("");
-const errors = ref({ username: "", email: "" });
-const showErrors = ref(false);
-const showModal = ref(false);
-
-const passwordRules = computed(() => [
-    {
-        text: t("passwordCase"),
-        valid: /[a-z]/.test(form.password) && /[A-Z]/.test(form.password),
-    },
-    { text: t("passwordNumber"), valid: /[0-9]/.test(form.password) },
-    {
-        text: t("passwordSpecial", { value: "(!@#$%^&*)" }),
-        valid: /[!@#$%^&*]/.test(form.password),
-    },
-    { text: t("passwordLength", { min: 6 }), valid: form.password.length >= 6 },
-    {
-        text: t("passwordConfirm"),
-        valid: form.password === form.confirm && form.confirm.length > 0,
-    },
-]);
-
-const progress = computed(() => {
-    const startProgress = form.password.length > 0 ? 10 : 0;
-    return (
-        startProgress +
-        (passwordRules.value.filter((rule) => rule.valid).length / 5) * 100
-    );
-});
-
-const progressColor = computed(() => {
-    if (progress.value < 20) return "#da1e28";
-    if (progress.value < 40) return "#8e6a00";
-    if (progress.value < 60) return "#ba4e00";
-    if (progress.value < 80) return "#ff832b";
-    return "#28a745";
-});
-
-const inputHandler = () => {
-    errors.value.username = validateInput(form.username, [
-        required(t),
-        minLength(3, t),
-    ]);
-    errors.value.email = validateInput(form.email, [required(t), isEmail(t)]);
-};
-
-const handleSubmit = async () => {
-    inputHandler();
-    if (
-        !Object.values(errors.value).every((error) => !error) ||
-        progress.value < 100
-    ) {
-        showErrors.value = true;
-        return;
-    }
-
-    const userStore = useAuthStore();
-    const response = await userStore.register(form.email, form.password, form.username);
-    if (response.status === 200) {
-        // Route to main page
-        Route.push({ name: "home" });
-    } else if (response.status === 409) { // Email already exists
-        modalValue.value = "emailExist";
-        showModal.value = true;
-    } else { // Other error
-        modalValue.value = "registerError";
-        showModal.value = true;
-    }
-        
-    
-};
-</script>
 
 <style lang="scss">
 .registration-form {

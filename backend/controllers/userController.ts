@@ -87,7 +87,7 @@ export const getUserInfo = async (req: Request, res: Response) => {
 
         res.status(200).json(user);
     } catch (error: any) {
-        console.error(error.message);
+        console.error('getUserInfo ====', error.message);
         res.status(500).send('Server Error');
     }
 }

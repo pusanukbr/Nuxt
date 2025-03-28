@@ -12,6 +12,8 @@ import { useAuthStore } from "./store/auth";
 
 const themeStore = useThemeStore();
 const { t } = useI18n();
+
+// Використовуємо стор для авторизації
 const authStore = useAuthStore();
 
 onMounted(() => {
@@ -29,7 +31,8 @@ onMounted(() => {
                 themeStore.applyTheme("system");
             }
         });
-        
+
+    // Підтягуємо користувача, якщо він авторизований
     authStore.fetchUser();
 });
 </script>

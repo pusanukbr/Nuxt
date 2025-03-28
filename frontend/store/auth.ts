@@ -8,27 +8,31 @@ export const useAuthStore = defineStore("auth", {
   }),
   actions: {
     async fetchUser() {
-      const { $axios } = useNuxtApp();
+      const { $axios, $errorLog } = useNuxtApp();
 
       try {
-        const response = await $axios.get('/api/v1/auth');
+        const response = await $axios.get('/api/v1/auth/getUser');
         this.user = response.data;
         this.isAuthenticated = true;
       } catch (error) {
-        console.error('Помилка отримання користувача:', error);
+        $errorLog(error);
       }
     },
+
     async register(email: string, password: string, username: string) { // Type: any - тимчасово
       const { $axios } = useNuxtApp();
+
+      console.log('email, password, username', email, password, username);
 
       try {
         const response =  await $axios.post("/api/v1/auth/register", { email, password, username });  
 
         this.user = response.data.user;
-        localStorage.setItem('token', this.token); // Зберігаємо токен
+        localStorage.setItem('token', response.data.token); // Зберігаємо токен
 
         this.isAuthenticated = true;
       } catch (error) {
+        console.log('Помилка реєстрації:', error);
         console.error(error);
       }
     },
@@ -39,9 +43,9 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response =  await $axios.post("/api/v1/auth/login", { email, password });  
 
-        this.user = response.data.user;
         localStorage.setItem('token', this.token); // Зберігаємо токен
 
+        this.user = response.data.user;
         this.isAuthenticated = true;
       } catch (error) {
         console.error(error);
