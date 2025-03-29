@@ -4,7 +4,6 @@ import { useI18n } from "vue-i18n";
 import { isEmail, minLength, required } from "../../utils/validationRules";
 import { validateInput } from "../../utils/validation";
 import { useAuthStore } from "../../store/auth";
-import { useRouter } from 'vue-router';
 
 const router = useRouter();
 // Використовуємо i18n
@@ -55,7 +54,7 @@ const handleSubmit = async () => {
 
     if (response.status === 200) {
         // Route to main page
-        return await router.push('/');
+        return router.push('/');
     }  else { // Other error
         modalValue.value = "";
         showModal.value = true;

@@ -38,7 +38,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
         const token = generateToken(user._id);
 
-        res.status(201).json({ id: user._id, user, token });
+        res.status(200).json({ id: user._id, user, token });
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');

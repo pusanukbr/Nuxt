@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { I18nD, useI18n } from "vue-i18n";
 import HeaderPage from "../components/headerPage.vue";
-const { t } = useI18n();
+
 const router = useRouter();
 
 definePageMeta({
@@ -9,9 +8,9 @@ definePageMeta({
     description: "Feed page",
 });
 
-const { data: posts, pending } = useAsyncData("posts", async () => {
+const { data: posts, pending } = await useAsyncData("posts", () => {
     // await new Promise((resolve) => setTimeout(resolve, 2000)); // Імітація затримки
-    return await $fetch("/api/posts");
+    return $fetch("/api/posts");
 });
 
 const routerToPost = (id: number) => {

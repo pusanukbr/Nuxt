@@ -19,44 +19,47 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
-    async register(email: string, password: string, username: string) { // Type: any - тимчасово
-      const { $axios } = useNuxtApp();
+    async register(email: string, password: string, username: string) {
+      const { $axios, $errorLog } = useNuxtApp();
 
       console.log('email, password, username', email, password, username);
 
       try {
-        const response =  await $axios.post("/api/v1/auth/register", { email, password, username });  
+        const response =  await $axios.post("/api/v1/auth/register", { email, password, username });
 
-        this.user = response.data.user;
         localStorage.setItem('token', response.data.token); // Зберігаємо токен
-
+        this.user = response.data.user;
         this.isAuthenticated = true;
+
+        return response;
       } catch (error) {
-        console.log('Помилка реєстрації:', error);
-        console.error(error);
+        $errorLog(error);
       }
     },
 
     async login(email: string, password: string) {
-      const { $axios } = useNuxtApp();
+      const { $axios, $errorLog } = useNuxtApp();
 
       try {
         const response =  await $axios.post("/api/v1/auth/login", { email, password });  
 
-        localStorage.setItem('token', this.token); // Зберігаємо токен
-
+        localStorage.setItem('token', response.data.token); // Зберігаємо токен
         this.user = response.data.user;
         this.isAuthenticated = true;
+
+        return response;
       } catch (error) {
-        console.error(error);
+        $errorLog(error);
       }
     },
     logout() {
       const { $axios } = useNuxtApp();
-      
-      this.isAuthenticated = false;
+
+      localStorage.removeItem('token');
       this.user = null; // Очищаємо дані користувача
-      localStorage.removeItem('token')
+      this.isAuthenticated = false;
+
+
       delete $axios.defaults.headers.common['Authorization']
     },
   },

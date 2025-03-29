@@ -76,9 +76,10 @@ const handleSubmit = async () => {
     }
 
     const response = await userStore.register(form.email, form.password, form.username);
+    console.log(response);
     if (response.status === 200) {
         // Route to main page
-        router.push({ path: "/" });
+        return router.push({ path: "/" });
     } else if (response.status === 409) { // Email already exists
         modalValue.value = "emailExist";
         showModal.value = true;
