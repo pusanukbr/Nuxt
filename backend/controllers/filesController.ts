@@ -39,5 +39,5 @@ export const fileController = async (req: REQUser, res: Response) => {
     // Save the new avatar path to the user (this part depends on your user model and database setup)
     await User.updateOne({ email: req.user.email }, { avatar: imageUrl });
 
-    res.status(201).json({ imageUrl });
+    res.status(200).json({ imageUrl });
 }
