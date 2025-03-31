@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 const { src } = defineProps<{
-    src: String;
+    src: string;
 }>();
 
 const loading = ref(true)

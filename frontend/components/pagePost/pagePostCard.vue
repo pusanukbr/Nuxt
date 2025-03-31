@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { post, user } = defineProps<{
-    post?: Object;
-    user?: Object;
+    post?: object;
+    user?: object;
 }>();
 </script>
 

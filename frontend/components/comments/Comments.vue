@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const { comment } = defineProps<{
-    comment: Object;
+    comment: object;
 }>();
 
 const hideReplies = ref(true);
