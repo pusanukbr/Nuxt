@@ -16,6 +16,9 @@ const { data: posts, pending } = await useAsyncData("posts", () => {
 const routerToPost = (id: number) => {
     router.push(`/post/${id}`);
 };
+
+console.log("Знайдені маршрути:", useRouter().getRoutes());
+
 </script>
 
 <template>

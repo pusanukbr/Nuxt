@@ -2,7 +2,7 @@
 definePageMeta({
     title: "Post",
     description: "Post page",
-    middleware: ["track-previous"],
+    middleware: "track-previous",
 });
 
 import HeaderPage from "../../components/headerPage.vue";
