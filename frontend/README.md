@@ -67,6 +67,8 @@
 │── services/    # API запити
 │── types/       # TypeScript інтерфейси
 │── nuxt.config.ts  # Налаштування Nuxt
+│── package.json  # Залежності проекту
+│── tsconfig.json  # Налаштування TypeScript
 ```
 
 ## 5. Дизайн та UX/UI
