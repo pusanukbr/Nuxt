@@ -55,8 +55,11 @@ const handleSubmit = async () => {
     if (response.status === 200) {
         // Route to main page
         return router.push('/');
-    }  else { // Other error
-        modalValue.value = "";
+    }  else if (response.status === 401) { // Other error
+        modalValue.value = "emailExist";
+        showModal.value = true;
+    } else {
+        modalValue.value = "error";
         showModal.value = true;
     }
 
