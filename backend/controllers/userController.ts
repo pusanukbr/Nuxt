@@ -69,6 +69,11 @@ export const loginUser = async (req: Request, res: Response) => {
 
         const token = generateToken(user._id);
 
+        
+        // Remove password from user object
+
+        user.password = ''; 
+
         res.status(200).json({id: user._id, user, token});
     } catch (error: any) {
         console.error(error.message);
