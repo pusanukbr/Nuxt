@@ -71,6 +71,25 @@
 │── tsconfig.json  # Налаштування TypeScript
 ```
 
+### 4.2. Backend структура (Node.js + Express)
+
+```/project-backend
+│── src/
+│   ├── config/        # Налаштування бази даних, JWT, та інших конфігурацій
+│   ├── controllers/   # Логіка обробки запитів
+│   ├── middlewares/   # Middleware для аутентифікації та валідації
+│   ├── models/        # Схеми бази даних (Mongoose)
+│   ├── routes/        # Маршрути API
+│   ├── services/      # Логіка роботи з базою даних
+│   ├── utils/         # Допоміжні функції
+│   ├── validations/   # Валідація запитів
+│   ├── app.js         # Головний файл сервера
+│   └── server.js      # Запуск сервера
+│── .env               # Змінні середовища
+│── .gitignore         # Ігноровані файли
+│── package.json       # Залежності проекту
+│── tsconfig.json      # Налаштування TypeScript
+```
 ## 5. Дизайн та UX/UI
 
 - **Мінімалістичний та зручний інтерфейс**
