@@ -1,11 +1,10 @@
-import { defineNuxtRouteMiddleware, navigateTo } from "nuxt/app";
-import { useAuthStore } from "../store/auth"; // Замените на правильный путь к вашему хранилищу
-
+import { defineNuxtRouteMiddleware, navigateTo } from 'nuxt/app'
+import { useAuthStore } from '../store/auth'
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  const auth = useAuthStore(); // Отримуємо стейт авторизації (замінити на свій метод)
+  const auth = useAuthStore()
 
   if (!auth.isAuthenticated) {
-    return navigateTo("/login"); // Перенаправлення на сторінку входу
+    return navigateTo('/login')
   }
-});
+})
