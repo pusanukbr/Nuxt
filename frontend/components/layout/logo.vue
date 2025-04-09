@@ -1,7 +1,7 @@
 <template>
   <div>
     <NuxtLink to="/">
-      <SvgoLogoIcon alt="Logo" class="logo__icon" />
+      <SvgoLogoIcon width="30" height="30" class="logo__icon" />
     </NuxtLink>
   </div>
 </template>

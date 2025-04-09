@@ -10,24 +10,25 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 const { t } = useI18n()
 
-const showModal = ref(true)
+const showModal = ref(false)
+const dataComment = ref('')
 
 const router = useRoute()
 const postId = router.params.id
 const previousPage: string = useState('previousPath')
 const backLink: string = previousPage.value === router.path ? '/' : previousPage
 
-const { data: post, pending } = useAsyncData(`post-${postId}`, async () => {
-  return await $fetch(`/api/posts/${postId}`)
+const { data: post, pending } = await useAsyncData(`post-${postId}`, async () => {
+  return $fetch(`/api/posts/${postId}`)
 })
 
-const openMadal = () => {
+const openModal = () => {
   showModal.value = true
 }
 </script>
 
 <template>
-  <HeaderPage title="postTitle" :back-link="backLink">
+  <HeaderPage :title="'postTitle'" :back-link="backLink">
     <div class="page-post">
       <div class="page-post__post">
         <SkeletonPost v-if="pending" />
@@ -50,7 +51,7 @@ const openMadal = () => {
         <Comments :comment="comment" />
       </div>
     </div>
-    <div class="page-post__input" @click="openMadal()">
+    <div class="page-post__input" @click="openModal()">
       <div class="page-post__input--wrapper">
         <UserAvatar :src="post.user.avatar" />
         <span>{{ t('addComment') }}</span>
@@ -72,9 +73,9 @@ const openMadal = () => {
     </div>
     <div class="modal__post--input">
       <div class="modal__post--input-avatar">
-        <UserAvatar :src="user.avatar" />
+        <UserAvatar :src="post.user.avatar" />
       </div>
-      <UiBaseInput v-model="comment" :placeholder="t('addComment')" />
+      <UiBaseInput v-model="dataComment" :placeholder="t('addComment')" />
     </div>
 
     <div class="modal__submit">
