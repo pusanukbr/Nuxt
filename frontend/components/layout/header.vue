@@ -1,3 +1,26 @@
+<script setup lang="ts">
+import Logo from './logo.vue'
+import BurgerMenu from './burgerMenu.vue'
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+import { useAuthStore } from '../../store/auth'
+
+const authStore = useAuthStore()
+const showBurger = ref(false)
+const menuRef = ref<HTMLElement | null>(null)
+const toggleBurgerRef = ref<HTMLElement | null>(null)
+
+onClickOutside(
+  menuRef,
+  () => {
+    showBurger.value = false
+  },
+  { ignore: [toggleBurgerRef] }
+)
+</script>
+
 <template>
   <header class="header">
     <Logo />
@@ -12,17 +35,17 @@
           <Icon name="fluent:search-24-regular" class="menu__item--icon" />
         </NuxtLink>
       </li>
-      <li class="menu__item">
+      <li class="menu__item" v-if="authStore.isAuthenticated">
         <button class="menu__button">
           <Icon name="fluent:add-24-regular" class="menu__item--icon" />
         </button>
       </li>
-      <li class="menu__item">
+      <li class="menu__item" v-if="authStore.isAuthenticated">
         <NuxtLink to="/" class="menu__link">
           <Icon name="fluent:heart-24-regular" class="menu__item--icon" />
         </NuxtLink>
       </li>
-      <li class="menu__item">
+      <li class="menu__item" v-if="authStore.isAuthenticated">
         <NuxtLink to="/" class="menu__link">
           <Icon name="fluent:person-24-regular" class="menu__item--icon" />
         </NuxtLink>
@@ -39,27 +62,6 @@
     </div>
   </header>
 </template>
-
-<script setup lang="ts">
-import Logo from './logo.vue'
-import BurgerMenu from './burgerMenu.vue'
-import { ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-const showBurger = ref(false)
-const menuRef = ref<HTMLElement | null>(null)
-const toggleBurgerRef = ref<HTMLElement | null>(null)
-
-onClickOutside(
-  menuRef,
-  () => {
-    showBurger.value = false
-  },
-  { ignore: [toggleBurgerRef] }
-)
-</script>
 
 <style lang="scss">
 .open_animate-enter-active,
