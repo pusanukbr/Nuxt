@@ -19,6 +19,10 @@ const toggleSwitcher = ref(false)
 const setTheme = (mode: 'light' | 'dark' | 'system') => {
   themeStore.setTheme(mode)
 }
+
+const logout = () => {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -44,7 +48,7 @@ const setTheme = (mode: 'light' | 'dark' | 'system') => {
           <span>{{ t('report') }}</span>
         </li>
         <li class="burger__item burger__item--red" v-if="authStore.isAuthenticated">
-          <NuxtLink to="logout">{{ t('logout') }}</NuxtLink>
+          <div @click="logout">{{ t('logout') }}</div>
         </li>
       </ul>
     </div>
