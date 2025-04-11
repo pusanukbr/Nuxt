@@ -1,26 +1,34 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import connectDB from './config/db';
-// import userRoutes from './routes/userRoutes';
-import authRoutes from './routes/authRoutes';
-import cors from 'cors';
+import express from 'express'
+import dotenv from 'dotenv'
+import connectDB from './config/db'
 
-dotenv.config();
+import authRoutes from './routes/authRoutes'
+import postsRoutes from './routes/postsRoutes'
 
+import cors from 'cors'
 
-const app = express();
-app.use(cors({ origin: process.env.CLIENT_URL ||  '*', methods: ['GET', 'POST', 'PUT', 'DELETE'], allowedHeaders: ['Content-Type', 'Authorization']}))
-app.use(express.json());
+dotenv.config()
 
-connectDB();
+const app = express()
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+)
+app.use(express.json())
+
+connectDB()
 
 app.get('/', (_, res) => {
-    res.send('API is running...');
-});
+  res.send('API is running...')
+})
 
-app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/posts', postsRoutes)
 
 // Server upload folder
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'))
 
-export default app;
+export default app
