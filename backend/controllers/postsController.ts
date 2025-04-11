@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import Posts from '../models/Posts'
+import Post from '../models/Post'
 
 export const getPosts = async (req: Request, res: Response) => {
   try {
-    const posts = await Posts.find().populate('user', 'username avatar')
+    const posts = await Post.find().populate('user', 'username avatar')
     res.status(200).json(posts)
   } catch (error: any) {
     console.error(error.message)
@@ -13,7 +13,7 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const getPost = async (req: Request, res: Response) => {
   try {
-    const post = await Posts.findById(req.params.id).populate('user', 'username avatar')
+    const post = await Post.findById(req.params.id).populate('user', 'username avatar')
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' })
     }
@@ -28,7 +28,7 @@ export const createPost = async (req: Request, res: Response) => {
   const { title, content } = req.body
 
   try {
-    const post = new Posts({
+    const post = new Post({
       title,
       content,
       user: req.user.id
