@@ -17,7 +17,7 @@ const routerToPost = () => {
 <template>
   <div class="post-card">
     <div class="post-card__col">
-      <UserAvatar :src="user.avatar" />
+      <UserAvatar />
     </div>
     <div class="post-card__col">
       <PostHeader :user="user" :createdAt="post.createdAt" />

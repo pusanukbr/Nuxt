@@ -13,9 +13,11 @@
 </template>
 
 <script setup lang="ts">
-const { src } = defineProps<{
-    src: string;
-}>();
+const { src } = withDefaults(defineProps<{
+  src?: string
+}>(), {
+  src: 'https://xsgames.co/randomusers/assets/avatars/male/19.jpg'
+})
 
 const loading = ref(true)
 const onLoad = () => {

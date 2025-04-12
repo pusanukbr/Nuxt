@@ -25,19 +25,45 @@ export const getPost = async (req: Request, res: Response) => {
 }
 
 export const createPost = async (req: Request, res: Response) => {
-  const { title, content } = req.body
+  const { content } = req.body
 
   try {
     const post = new Post({
-      title,
       content,
       user: req.user.id
     })
 
     await post.save()
-    res.status(201).json(post)
+    const reqPost = await Post.findById(post._id).populate('user', 'username avatar')
+    res.status(201).json(reqPost)
   } catch (error: any) {
     console.error(error.message)
     res.status(500).send('Server Error')
   }
 }
+
+export const updatePost = async (req: Request, res: Response) => {
+  const { content } = req.body
+
+  try {
+    let post = await Post.findById(req.params.id)
+
+    if (!post) {
+      return res.status(404).json({ msg: 'Post not found' })
+    }
+
+    // Check if the user is the owner of the post
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' })
+    }
+
+    post.content = content
+    await post.save()
+
+    res.status(200).json(post)
+  } catch (error: any) {
+    console.error(error.message)
+    res.status(500).send('Server Error')
+  }
+}
+//       }
