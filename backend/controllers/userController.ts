@@ -1,20 +1,11 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
-
-import jwt from 'jsonwebtoken';
-
-//Generete JWT token
-const generateToken = (id: string) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET || '', {
-        expiresIn: '1h',
-    });
-}
+import { generateToken } from '../utils';
+import userDtos from '../dtos/userDtos';
 
 // Register User
 export const registerUser = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
-
-    console.log('req.body', req.body);
     
     // Validate user
     if(!username || !email || !password) {
@@ -36,9 +27,11 @@ export const registerUser = async (req: Request, res: Response) => {
 
         await user.save();
 
-        const token = generateToken(user._id);
+        const token = generateToken(user._id);  
 
-        res.status(200).json({ id: user._id, user, token });
+        const userData = userDtos(user);
+
+        res.status(200).json(userData);
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -72,9 +65,9 @@ export const loginUser = async (req: Request, res: Response) => {
         
         // Remove password from user object
 
-        user.password = ''; 
+        const userData = userDtos(user);
 
-        res.status(200).json({id: user._id, user, token});
+        res.status(200).json(userData);
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -90,7 +83,9 @@ export const getUserInfo = async (req: Request, res: Response) => {
             return res.status(404).json({msg: 'User not found'});
         }
 
-        res.status(200).json(user);
+        const userData = userDtos(user);
+
+        res.status(200).json(userData);
     } catch (error: any) {
         console.error('getUserInfo ====', error.message);
         res.status(500).send('Server Error');
