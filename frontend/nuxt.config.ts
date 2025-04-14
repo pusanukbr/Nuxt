@@ -8,6 +8,12 @@ export default defineNuxtConfig({
       '/_nuxt/**': { headers: { 'cache-control': 'no-store, max-age=0' } }
     }
   },
+  runtimeConfig: {
+    public: {
+      apiBase: '/', // для клієнта
+    },
+    apiBase: `http://localhost:${process.env.API_BASE_URL}` || 'http://localhost:3000/' // для сервера
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   modules: [

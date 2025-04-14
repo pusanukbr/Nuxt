@@ -22,7 +22,7 @@ onMounted(() => {
   })
 
   // Підтягуємо користувача, якщо він авторизований
-  authStore.fetchUser()
+  // authStore.fetchUser()
 })
 </script>
 

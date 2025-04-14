@@ -9,13 +9,18 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async fetchUser() {
       const { $axios, $errorLog } = useNuxtApp();
+      const loading = useState('globalLoading', () => false);
+
 
       try {
+        loading.value = true;
         const response = await $axios.get('/api/v1/auth/getUser');
         this.user = response.data;
         this.isAuthenticated = true;
       } catch (error) {
         $errorLog(error);
+      } finally {
+        loading.value = false;
       }
     },
 
@@ -42,7 +47,7 @@ export const useAuthStore = defineStore("auth", {
 
       try {
         const response =  await $axios.post("/api/v1/auth/login", { email, password });  
-
+        console.log('response', response);
         localStorage.setItem('token', response.data.token); // Зберігаємо токен
         this.user = response.data.user;
         this.isAuthenticated = true;

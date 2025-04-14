@@ -4,6 +4,7 @@ import Header from '../components/layout/header.vue'
 import { useI18n } from 'vue-i18n'
 import AddPostButton from '../components/layout/addPostButton.vue'
 import { useAuthStore } from '../store/auth'
+import AppLoader from '../components/AppLoader.vue'
 
 const authStore = useAuthStore()
 
@@ -12,6 +13,7 @@ const { t } = useI18n()
 
 <template>
   <div class="main">
+    <AppLoader />
     <!-- Header -->
     <Header />
 

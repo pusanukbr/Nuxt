@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 
 definePageMeta({
   title: 'Feed',
-  description: 'Feed page'
+  description: 'Feed page',
 })
 
 const router = useRouter()

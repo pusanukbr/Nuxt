@@ -31,7 +31,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
         const userData = userDtos(user);
 
-        res.status(200).json(userData);
+        res.status(200).json({...userData, token});
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -62,12 +62,9 @@ export const loginUser = async (req: Request, res: Response) => {
 
         const token = generateToken(user._id);
 
-        
-        // Remove password from user object
-
         const userData = userDtos(user);
 
-        res.status(200).json(userData);
+        res.status(200).json({...userData, token});
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
