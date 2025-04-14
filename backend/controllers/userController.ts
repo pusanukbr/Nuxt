@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import User from '../models/User';
 import { generateToken } from '../utils';
 import userDtos from '../dtos/userDtos';
+import jwt from 'jsonwebtoken';
 
 // Register User
 export const registerUser = async (req: Request, res: Response) => {
@@ -30,8 +31,15 @@ export const registerUser = async (req: Request, res: Response) => {
         const token = generateToken(user._id);  
 
         const userData = userDtos(user);
+        res.cookie('token', token, {
+            httpOnly: true,     // 🔒 Захищено: JS не бачить
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict', // 🚫 Захист від CSRF
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 7 днів
+            path: '/',
+          })
 
-        res.status(200).json({...userData, token});
+        res.status(200).json(userData);
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -63,8 +71,15 @@ export const loginUser = async (req: Request, res: Response) => {
         const token = generateToken(user._id);
 
         const userData = userDtos(user);
+        res.cookie('token', token, {
+            httpOnly: true,     // 🔒 Захищено: JS не бачить
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict', // 🚫 Захист від CSRF
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 7 днів
+            path: '/',
+          })
 
-        res.status(200).json({...userData, token});
+        res.status(200).json(userData);
     } catch (error: any) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -72,19 +87,26 @@ export const loginUser = async (req: Request, res: Response) => {
 }
 
 // Get User Info
-export const getUserInfo = async (req: Request, res: Response) => {
-    try {
-        const user = await User.findById(req.user.id).select('-password');
-
-        if (!user) {
-            return res.status(404).json({msg: 'User not found'});
-        }
-
-        const userData = userDtos(user);
-
-        res.status(200).json(userData);
-    } catch (error: any) {
-        console.error('getUserInfo ====', error.message);
-        res.status(500).send('Server Error');
+export const getUser = async (req: Request, res: Response) => {
+    const token = req.cookies?.token;
+  
+    if (!token) {
+      return res.status(401).json({ msg: 'Not authorized to access this route' });
     }
-}
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+      const user = await User.findById((decoded as any).id).select('-password');
+  
+      if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
+      }
+
+      const userData = userDtos(user);
+  
+      res.status(200).json(userData);
+    } catch (error) {
+      console.error(error);
+      res.status(401).json({ msg: 'Invalid token' });
+    }
+  };

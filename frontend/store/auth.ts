@@ -32,7 +32,6 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response =  await $axios.post("/api/v1/auth/register", { email, password, username });
 
-        localStorage.setItem('token', response.data.token); // Зберігаємо токен
         this.user = response.data.user;
         this.isAuthenticated = true;
 
@@ -48,7 +47,7 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response =  await $axios.post("/api/v1/auth/login", { email, password });  
         console.log('response', response);
-        localStorage.setItem('token', response.data.token); // Зберігаємо токен
+
         this.user = response.data.user;
         this.isAuthenticated = true;
 
@@ -60,7 +59,6 @@ export const useAuthStore = defineStore("auth", {
     logout() {
       const { $axios } = useNuxtApp();
 
-      localStorage.removeItem('token');
       this.user = null; // Очищаємо дані користувача
       this.isAuthenticated = false;
 
