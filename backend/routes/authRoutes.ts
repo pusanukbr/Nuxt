@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/getUser', getUser);
+router.get('/getUser',protect, getUser);
 
 router.post('/upload-avatar', [protect, upload.single('avatar')], fileController)
 

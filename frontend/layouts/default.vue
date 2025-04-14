@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import AddPostButton from '../components/layout/addPostButton.vue'
 import { useAuthStore } from '../store/auth'
 import AppLoader from '../components/AppLoader.vue'
+const globalLoading = useState('globalLoading')
 
 const authStore = useAuthStore()
 
@@ -13,7 +14,7 @@ const { t } = useI18n()
 
 <template>
   <div class="main">
-    <AppLoader />
+    <AppLoader class="app-loader" :class="{ hidden: !globalLoading }" />
     <!-- Header -->
     <Header />
 
@@ -46,5 +47,8 @@ const { t } = useI18n()
 
     padding-left: 100px;
   }
+}
+.app-loader.hidden {
+  display: none;
 }
 </style>

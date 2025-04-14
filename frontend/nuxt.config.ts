@@ -10,9 +10,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: 'http://localhost:3000/', // для клієнта
+      apiBase: process.env.PUBLIC_API_BASE || 'http://localhost:3000/',
     },
-    apiBase: `http://localhost:${process.env.API_BASE_URL}` || 'http://localhost:3000/' // для сервера
+    apiBase: process.env.API_BASE_URL 
+      ? `http://localhost:${process.env.API_BASE_URL}`
+      : 'http://localhost:3000/',
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },

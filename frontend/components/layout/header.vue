@@ -99,6 +99,8 @@ onClickOutside(
 
   background-color: var(--primary-bg);
 
+  z-index: 100;
+
   .menu {
     display: flex;
     flex-direction: column;

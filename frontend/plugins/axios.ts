@@ -6,7 +6,7 @@ export default defineNuxtPlugin(() => {
   const axiosInstance = axios.create({
     baseURL: process.server ? config.apiBase : config.public.apiBase,
     timeout: 10000,
-    credentials: 'include',
+    withCredentials: true,
   })
 
   return {

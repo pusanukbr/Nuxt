@@ -20,6 +20,8 @@ const { t } = useI18n()
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  z-index: 100;
 }
 .gradient-button {
   background: linear-gradient(

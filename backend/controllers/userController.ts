@@ -87,16 +87,10 @@ export const loginUser = async (req: Request, res: Response) => {
 }
 
 // Get User Info
-export const getUser = async (req: Request, res: Response) => {
-    const token = req.cookies?.token;
-  
-    if (!token) {
-      return res.status(401).json({ msg: 'Not authorized to access this route' });
-    }
-  
+export const getUser = async (req: Request, res: Response) => { 
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-      const user = await User.findById((decoded as any).id).select('-password');
+
+      const user = await User.findById(req.user.id).select('-password');
   
       if (!user) {
         return res.status(404).json({ msg: 'User not found' });
