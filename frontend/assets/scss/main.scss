@@ -44,3 +44,52 @@ html {
 }
 
 
+.gradient-button {
+    background: linear-gradient(
+                    90deg,
+                    #fbad27,
+                    #ff9254,
+                    #ff7b80,
+                    #ff73ad,
+                    #fc79d5,
+                    #cf87f1,
+                    #9694fd,
+                    #4e9df7
+    );
+    background-size: 100% 100%;
+    color: white;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-button:hover {
+    background-position: right center;
+    filter: brightness(1.2);
+}
+
+.gradient-text {
+    background: linear-gradient(
+                    40deg,
+                    #fbad27,
+                    #ff9254,
+                    #ff7b80,
+                    #ff73ad,
+                    #fc79d5,
+                    #cf87f1,
+                    #9694fd,
+                    #4e9df7
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
+}

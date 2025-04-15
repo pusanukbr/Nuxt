@@ -10,11 +10,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.PUBLIC_API_BASE || 'http://localhost:3000/',
+      apiBase: process.env.PUBLIC_API_BASE || 'http://localhost:3000/api/v1/'
     },
-    apiBase: process.env.API_BASE_URL 
+    apiBase: process.env.API_BASE_URL
       ? `http://localhost:${process.env.API_BASE_URL}`
-      : 'http://localhost:3000/',
+      : 'http://localhost:3000/api/v1/'
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
@@ -46,10 +46,6 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [{ name: 'Montserrat', provider: 'google' }]
-  },
-  image: {
-    provider: 'ipx',
-    domains: ['xsgames.co']
   },
   icon: {
     serverBundle: {
