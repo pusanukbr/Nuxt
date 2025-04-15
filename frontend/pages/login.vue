@@ -18,8 +18,10 @@ definePageMeta({
         <NuxtLink to="/register" class="gradient-text">{{ t('register') }}</NuxtLink>
       </div>
     </div>
-    <div class="login-page__img"></div>
-    <div class="login-page__img-bg"></div>
+    <div class="login-page__motivation">
+      <QuoteTyper />
+    </div>
+    
   </div>
 </template>
 
@@ -48,10 +50,14 @@ definePageMeta({
     margin-bottom: 1rem;
   }
 
-  &__img {
+  &__motivation {
     position: absolute;
     right: 0;
     top: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
     width: 50%;
     height: 95%;
@@ -71,27 +77,6 @@ definePageMeta({
     );
     transform: translateY(-50%);
     overflow: hidden;
-
-    filter: blur(10px);
-
-    &-bg {
-      position: absolute;
-
-      right: 0;
-      top: 50%;
-
-      width: 45%;
-      height: 90%;
-
-      background-image: url('../assets/img/bg_2.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      border-top-left-radius: 30px;
-
-      transform: translateY(-50%);
-    }
   }
 }
 </style>
