@@ -125,7 +125,7 @@ const handleSubmit = async () => {
   max-width: 400px;
   width: 100%;
 
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .login-form__group {

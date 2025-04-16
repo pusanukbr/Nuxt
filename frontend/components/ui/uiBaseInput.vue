@@ -83,7 +83,7 @@ const togglePasswordVisibility = () => {
   outline: none;
 
   font-size: 14px;
-  color: #333;
+  color: var(--primary-text);
 
   transition: border-color 0.2s;
 }
