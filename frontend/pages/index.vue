@@ -1,30 +1,29 @@
 <script setup lang="ts">
 import HeaderPage from '../components/headerPage.vue'
-import { usePostStore } from "../store/post";
+import { usePostStore } from '../store/post'
 import { onMounted } from 'vue'
 
 definePageMeta({
   title: 'Feed',
-  description: 'Feed page',
+  description: 'Feed page'
 })
 
 const router = useRouter()
 
 const postStore = usePostStore()
+const pending = ref(true)
 
-onMounted(() => {
+onMounted(async () => {
   // Fetch posts when the component is mounted
-  postStore.fetchPost()
+  await postStore.fetchPost()
+  pending.value = postStore.pending
 })
 
-const pending = computed(() => postStore.pending);
-const posts = computed(() => postStore.posts);
-
+const posts = computed(() => postStore.posts)
 
 const routerToPost = (id: number) => {
   router.push(`/post/${id}`)
 }
-
 </script>
 
 <template>
