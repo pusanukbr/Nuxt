@@ -13,8 +13,6 @@ const currentQuote = ref('');
 const index = ref(0);
 
 function pickRandomQuote() {
-  console.log(locale);
-  
   const list = quotes[locale.value] || quotes.en;
   return list[Math.floor(Math.random() * list.length)];
 }
@@ -62,7 +60,7 @@ watch(lang, () => {
 
     font-size: 5rem;
     font-weight: 500;
-    color: #333;
+    color: var(--quote-text);
     white-space: pre-line;
     font-family: 'Courier New', Courier, monospace;
 
@@ -72,7 +70,7 @@ watch(lang, () => {
     display: inline-block;
     width: 1ch;
     /* background-color: currentColor; */
-    color: currentColor;
+    color: var(--quote-text);
     animation: blink 1s steps(2, start) infinite;
   }
   

@@ -173,6 +173,6 @@ const handleSubmit = async () => {
 
 .login-form__checkbox-label {
   font-size: 14px;
-  color: #333;
+  color: var(--primary-text);
 }
 </style>
