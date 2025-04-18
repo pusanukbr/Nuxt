@@ -14,7 +14,7 @@ const showModal = ref(false)
 const dataComment = ref('')
 
 const router = useRoute()
-const postId = router.params.id
+const postId = router.params._id
 const previousPage: string = useState('previousPath')
 const backLink: string = previousPage.value === router.path ? '/' : previousPage
 

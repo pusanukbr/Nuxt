@@ -22,6 +22,7 @@ onMounted(async () => {
 const posts = computed(() => postStore.posts)
 
 const routerToPost = (id: number) => {
+  console.log('id', id)
   router.push(`/post/${id}`)
 }
 </script>
@@ -35,7 +36,7 @@ const routerToPost = (id: number) => {
       :key="post.id"
       :post="post"
       :user="post.user"
-      @click="routerToPost(post.id)"
+      @click="routerToPost(post._id)"
     />
   </HeaderPage>
 </template>
