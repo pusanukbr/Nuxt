@@ -44,5 +44,9 @@ export default {
   addComment: 'Add yours comments',
   addCommentTitle: 'Add comment',
   close: 'Cancel',
-  send: 'Send'
+  send: 'Send',
+  errorEmail: 'Email is required',
+  errorMinLength: 'Minimum {min} characters',
+  errorRequired: 'Required field',
+  errorConfirmPassword: 'Passwords must match'
 }

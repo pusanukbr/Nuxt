@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 definePageMeta({
   title: 'Post',
   description: 'Post page',
@@ -9,17 +11,23 @@ import HeaderPage from '../../components/headerPage.vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 const { t } = useI18n()
+import { usePostStore } from '../../store/post'
 
 const showModal = ref(false)
 const dataComment = ref('')
 
+const postStore = usePostStore()
+const pending = ref(true)
+const post = ref({})
+
 const router = useRoute()
-const postId = router.params._id
+const postId = router.params.id as string
 const previousPage: string = useState('previousPath')
 const backLink: string = previousPage.value === router.path ? '/' : previousPage
-
-const { data: post, pending } = await useAsyncData(`post-${postId}`, async () => {
-  return $fetch(`/api/posts/${postId}`)
+onMounted(async () => {
+  // Fetch posts when the component is mounted
+  post.value = await postStore.fetchPostById(postId)
+  pending.value = postStore.pending
 })
 
 const openModal = () => {
@@ -34,7 +42,7 @@ const openModal = () => {
         <SkeletonPost v-if="pending" />
         <PagePostCard v-else :post="post" :user="post.user" />
       </div>
-      <div class="page-post__activity">
+      <div v-if="!pending" class="page-post__activity">
         <div class="page-post__activity--wrapper">
           <span class="page-post__activity--answer">Відповіді</span>
           <div class="page-post__activity--watch">
@@ -51,9 +59,9 @@ const openModal = () => {
         <Comments :comment="comment" />
       </div>
     </div>
-    <div class="page-post__input" @click="openModal()">
+    <div v-if="!pending" class="page-post__input" @click="openModal()">
       <div class="page-post__input--wrapper">
-        <UserAvatar :src="post.user.avatar" />
+        <UserAvatar />
         <span>{{ t('addComment') }}</span>
       </div>
     </div>
@@ -63,7 +71,7 @@ const openModal = () => {
       <SkeletonPost v-if="pending" />
       <div v-else class="modal__post--wrapper">
         <div class="modal__post--wrapper-avatar">
-          <UserAvatar :src="post.user.avatar" />
+          <UserAvatar />
         </div>
         <div class="modal__post--wrapper-content">
           <PostHeader :user="post.user" :createdAt="post.createdAt" />
@@ -71,9 +79,9 @@ const openModal = () => {
         </div>
       </div>
     </div>
-    <div class="modal__post--input">
+    <div v-if="!pending" class="modal__post--input">
       <div class="modal__post--input-avatar">
-        <UserAvatar :src="post.user.avatar" />
+        <UserAvatar />
       </div>
       <UiBaseInput v-model="dataComment" :placeholder="t('addComment')" />
     </div>

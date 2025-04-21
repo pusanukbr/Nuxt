@@ -12,7 +12,7 @@ const { post, user } = defineProps<{
 <template>
   <div class="pagePost-card">
     <div class="pagePost-card__header">
-      <UserAvatar :src="user.avatar" />
+      <UserAvatar />
       <PostHeader :user="user" :createdAt="post.createdAt" />
     </div>
     <div class="pagePost-card__col">

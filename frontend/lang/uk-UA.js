@@ -45,5 +45,9 @@ export default {
   addComment: 'Додайте ваш коментар',
   addCommentTitle: 'Додати коментар',
   close: 'Скасувати',
-  send: 'Відправити'
+  send: 'Відправити',
+  errorEmail: "Електронна пошта обов'язкова",
+  errorMinLength: 'Мінімум {min} символів',
+  errorRequired: "Обов'язкове поле",
+  errorConfirmPassword: 'Паролі повинні співпадати'
 }

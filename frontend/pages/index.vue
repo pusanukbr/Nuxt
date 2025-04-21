@@ -22,7 +22,6 @@ onMounted(async () => {
 const posts = computed(() => postStore.posts)
 
 const routerToPost = (id: number) => {
-  console.log('id', id)
   router.push(`/post/${id}`)
 }
 </script>

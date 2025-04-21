@@ -66,7 +66,7 @@ export const usePostStore = defineStore('post', {
     async fetchPostById(postId: string) {
       const { $axios, $errorLog } = useNuxtApp()
       try {
-        const response = await $axios.get(`/posts/getPost/${postId}`)
+        const response = await $axios.get(`/posts/${postId}`)
         return response.data
       } catch (error) {
         $errorLog(error)
